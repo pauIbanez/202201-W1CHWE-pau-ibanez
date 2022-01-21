@@ -8,32 +8,33 @@ const ctx = canvas.getContext("2d");
 
 drawGrid(canvas, ctx, 10);
 
-let start;
-const getPos = (e) => ({
-  x: e.clientX - canvas.offsetLeft,
-  y: e.clientY - canvas.offsetTop,
+// Grid moving stuff
+let startPosition;
+const getPos = (event) => ({
+  x: event.clientX - canvas.offsetLeft,
+  y: event.clientY - canvas.offsetTop,
 });
 
 const reset = () => {
-  start = null;
-  ctx.setTransform(1, 0, 0, 1, 0, 0); // reset translation
+  startPosition = null;
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
   drawGrid(canvas, ctx, 10);
 };
 
-canvas.addEventListener("mousedown", (e) => {
+canvas.addEventListener("mousedown", (event) => {
   reset();
-  start = getPos(e);
+  startPosition = getPos(event);
 });
 
 canvas.addEventListener("mouseup", reset);
 canvas.addEventListener("mouseleave", reset);
 
-canvas.addEventListener("mousemove", (e) => {
+canvas.addEventListener("mousemove", (event) => {
   // Only move the grid when we registered a mousedown event
-  if (!start) return;
-  const pos = getPos(e);
+  if (!startPosition) return;
+  const pos = getPos(event);
   // Move coordinate system in the same way as the cursor
-  ctx.translate(pos.x - start.x, pos.y - start.y);
+  ctx.translate(pos.x - startPosition.x, pos.y - startPosition.y);
   drawGrid(canvas, ctx, 10);
-  start = pos;
+  startPosition = pos;
 });
