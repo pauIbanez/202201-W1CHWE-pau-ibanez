@@ -27,7 +27,6 @@ canvas.addEventListener("mousedown", (event) => {
 });
 
 canvas.addEventListener("mouseup", reset);
-canvas.addEventListener("mouseleave", reset);
 
 canvas.addEventListener("mousemove", (event) => {
   // Only move the grid when we registered a mousedown event
