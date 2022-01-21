@@ -17,7 +17,11 @@
     "testRegex": "((\\.|/*.)(spec))\\.js?$"
   },
   "scripts": {
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "compile": "sass site/source/scss/style.scss site/public/css/style.css --watch",
+    "srvCompile": "sass site/source/scss/style.scss site/public/css/style.css",
+    "srvModules": "cp -r node_modules site/public/",
+    "srvSetup": "npx srvCompile && srvModules"
   },
   "repository": {
     "type": "git",
