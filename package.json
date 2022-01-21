@@ -5,17 +5,16 @@
   "main": "index.js",
   "type": "module",
   "jest": {
-  "collectCoverage": true,
-  "moduleFileExtensions": [
-    "js",
-    "mjs"
-  ],
-  "transform": {
-    "^.+\\.js$": "babel-jest",
-    "^.+\\.mjs$": "babel-jest"
-  },
- 
-  "testRegex": "((\\.|/*.)(spec))\\.js?$"
+    "collectCoverage": true,
+    "moduleFileExtensions": [
+      "js",
+      "mjs"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      "^.+\\.mjs$": "babel-jest"
+    },
+    "testRegex": "((\\.|/*.)(spec))\\.js?$"
   },
   "scripts": {
     "test": "jest --watchAll"
@@ -37,6 +36,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.4",
-    "jest": "^27.4.7"
+    "jest": "^27.4.7",
+    "sass": "^1.49.0"
   }
 }
