@@ -1,0 +1,20 @@
+{
+  "name": "202201-w2chwe-pau-ibanez",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pauIbanez/202201-W2CHWE-pau-ibanez.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pauIbanez/202201-W2CHWE-pau-ibanez/issues"
+  },
+  "homepage": "https://github.com/pauIbanez/202201-W2CHWE-pau-ibanez#readme"
+}
