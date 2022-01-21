@@ -1,6 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+echo "Hook is reading commit"
+
 while read line; do
     # Skip comments
     if [ "${line:0:1}" == "#" ]; then
