@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
 import { drawGrid } from "./drawGrid.js";
+import { moveCells, drawCell } from "./drawCell.js";
 
 const canvas = document.getElementById("canvas");
 canvas.height = window.innerHeight / 2;
@@ -7,6 +8,10 @@ canvas.width = window.innerWidth / 2;
 const ctx = canvas.getContext("2d");
 
 drawGrid(canvas, ctx, 10);
+
+let cells = [];
+
+cells.push(drawCell(ctx, { x: 15, y: 15 }, 10));
 
 // Grid moving stuff
 let startPosition;
@@ -19,10 +24,13 @@ const reset = () => {
   startPosition = null;
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   drawGrid(canvas, ctx, 10);
+  cells.forEach((cell) => {
+    console.log(drawCell(ctx, { x: cell.x, y: cell.y }, 10));
+  });
 };
 
 canvas.addEventListener("mousedown", (event) => {
-  reset();
+  // reset();
   startPosition = getPos(event);
 });
 
@@ -35,5 +43,16 @@ canvas.addEventListener("mousemove", (event) => {
   // Move coordinate system in the same way as the cursor
   ctx.translate(pos.x - startPosition.x, pos.y - startPosition.y);
   drawGrid(canvas, ctx, 10);
+  const movedCells = moveCells(
+    cells,
+    pos.x - startPosition.x,
+    pos.y - startPosition.y
+  );
   startPosition = pos;
+
+  movedCells.forEach((cell) => {
+    drawCell(ctx, { x: cell.x, y: cell.y }, 10);
+  });
+
+  cells = movedCells;
 });
