@@ -1,11 +1,4 @@
 /* eslint-disable lines-between-class-members */
-const cellSorter = (cells) =>
-  cells.sort((cell1, cell2) => {
-    if (cell1.x > cell2.x) return -1;
-    if (cell1.x === cell2.x && cell1.y > cell2.y) return -1;
-
-    return 1;
-  });
 
 class Watchlist {
   origin;
@@ -63,11 +56,10 @@ class Watchlist {
 }
 
 const watchlistGenerator = (cells, cellSize) => {
+  console.log(cells);
   const watchlists = [];
 
-  const sortedCells = cellSorter(cells);
-
-  sortedCells.forEach((cell) => {
+  cells.forEach((cell) => {
     for (let x = -cellSize; x <= cellSize; x += cellSize) {
       for (let y = -cellSize; y <= cellSize; y += cellSize) {
         const relativepos = { x: cell.x + x, y: cell.y + y };

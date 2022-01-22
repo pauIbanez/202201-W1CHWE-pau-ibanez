@@ -2,7 +2,8 @@
 import { drawGrid } from "./drawGrid.js";
 import { moveCells, drawCell } from "./cellRendering.js";
 import { getGridAlignedCoords } from "./gridCoordenates.js";
-import { runNextGen } from "./gameRunner";
+import { runNextGen } from "./gameRunner.js";
+import { watchlistGenerator } from "./watchlist.js";
 
 const canvas = document.getElementById("grid");
 canvas.height = 2000;
@@ -14,7 +15,7 @@ cellCanvas.height = 2000;
 cellCanvas.width = 2000;
 const cellCtx = cellCanvas.getContext("2d");
 
-const paused = true;
+let paused = true;
 
 drawGrid(canvas, ctx, 10);
 
@@ -41,7 +42,6 @@ const reset = () => {
   cells = cells.map((cell) =>
     drawCell(cellCtx, getGridAlignedCoords(cell), 10)
   );
-  console.log(cells);
 };
 
 canvas.addEventListener("mousedown", (event) => {
@@ -107,3 +107,13 @@ canvas.addEventListener("mousemove", (event) => {
 
   cells = movedCells;
 });
+
+const run = (cellsList) => {
+  setTimeout(() => {
+    paused = false;
+    runNextGen(watchlistGenerator(cellsList), cellCtx);
+    console.log("Loaded next gen");
+  }, 5000);
+};
+
+run(cells);
