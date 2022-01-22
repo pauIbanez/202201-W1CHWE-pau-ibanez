@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import { drawGrid } from "./drawGrid.js";
-import { moveCells, drawCell } from "./drawCell.js";
+import { moveCells, drawCell, getGridAlignedCoords } from "./drawCell.js";
 
 const canvas = document.getElementById("grid");
 canvas.height = window.innerHeight;
@@ -18,7 +18,9 @@ drawGrid(canvas, ctx, 10);
 
 let cells = [];
 
-cells.push(drawCell(cellCtx, { x: 15, y: 15 }, 10, true));
+const firstCell = getGridAlignedCoords({ x: 15, y: 15 });
+cells.push(drawCell(cellCtx, firstCell, 10));
+console.log(firstCell);
 
 let prevMousePos;
 let mouseDown = false;
@@ -33,12 +35,12 @@ const reset = () => {
   moving = false;
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   drawGrid(canvas, ctx, 10);
-
   cellCtx.clearRect(0, 0, cellCanvas.width, cellCanvas.height);
 
-  cells.forEach((cell) => {
-    drawCell(cellCtx, { x: cell.x, y: cell.y }, 10, true);
-  });
+  cells = cells.map((cell) =>
+    drawCell(cellCtx, getGridAlignedCoords(cell), 10)
+  );
+  console.log(cells);
 };
 
 canvas.addEventListener("mousedown", (event) => {
@@ -50,15 +52,18 @@ canvas.addEventListener("mouseup", (event) => {
   mouseDown = false;
 
   if (!moving && paused) {
-    cells.push({ x: event.clientX, y: event.clientY });
-
-    console.log(event.clientX, event.clientY);
-    console.log("Attempting to create cell");
+    const clientInstanciatedCell = getGridAlignedCoords({
+      x: event.clientX,
+      y: event.clientY,
+    });
+    cells.push(drawCell(cellCtx, clientInstanciatedCell, 10));
   }
 
   reset();
 });
-canvas.addEventListener("mouseleave", reset);
+canvas.addEventListener("mouseleave", () => {
+  if (moving) reset();
+});
 
 canvas.addEventListener("mousemove", (event) => {
   if (!mouseDown) return;
