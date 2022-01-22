@@ -13,9 +13,10 @@ class Watchlist {
   watchedCells = [];
   alive;
 
-  constructor(origin, cellSize) {
+  constructor(origin, cellSize, alive) {
     this.origin = origin;
     this.cellSize = cellSize;
+    this.alive = alive;
     this.populate();
   }
 
@@ -35,7 +36,6 @@ class Watchlist {
 
   getStateForNextGen(cellsList) {
     let aliveNeighbours = 0;
-    const deadNeighbours = 0;
     for (const watchedCell of this.watchedCells) {
       if (
         cellsList.some(
@@ -79,7 +79,18 @@ const watchlistGenerator = (cells, cellSize) => {
         );
         console.log(watchExists);
         if (!watchExists) {
-          const newWatchlist = new Watchlist(relativepos, cellSize);
+          let newWatchlist;
+          if (
+            cells.some(
+              (cellAlive) =>
+                cellAlive.x === relativepos.x && cellAlive.y === relativepos.y
+            )
+          ) {
+            newWatchlist = new Watchlist(relativepos, cellSize, true);
+          } else {
+            newWatchlist = new Watchlist(relativepos, cellSize, false);
+          }
+
           watchlists.push(newWatchlist);
           console.log("Added watchlist with pos", relativepos);
         }
