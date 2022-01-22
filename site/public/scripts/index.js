@@ -7,6 +7,11 @@ canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 const ctx = canvas.getContext("2d");
 
+const cellCanvas = document.getElementById("canvas");
+cellCanvas.height = window.innerHeight;
+cellCanvas.width = window.innerWidth;
+const cellCtx = cellCanvas.getContext("2d");
+
 drawGrid(canvas, ctx, 10);
 
 let cells = [];
@@ -58,7 +63,7 @@ canvas.addEventListener("mousemove", (event) => {
   startPosition = pos;
 
   movedCells.forEach((cell) => {
-    drawCell(ctx, { x: currentOffset.x, y: currentOffset.y }, 10);
+    // drawCell(ctx, { x: currentOffset.x, y: currentOffset.y }, 10);
   });
 
   cells = movedCells;

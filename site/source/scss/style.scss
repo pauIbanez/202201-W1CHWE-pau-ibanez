@@ -10,7 +10,7 @@ html {
 }
 
 .canvas {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
@@ -18,5 +18,9 @@ html {
 
   &--grid {
     background-color: #1d1d1d;
+  }
+
+  &--cells {
+    pointer-events: none;
   }
 }
