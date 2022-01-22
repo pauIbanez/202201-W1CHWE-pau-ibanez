@@ -1,5 +1,5 @@
 const getGridAlignedCoords = (coordenates) => {
-  const newCoordenates = {};
+  const newCoordenates = coordenates;
 
   if (coordenates.x % 10 !== 0) {
     newCoordenates.x = Math.round(coordenates.x / 10) * 10;
@@ -8,22 +8,16 @@ const getGridAlignedCoords = (coordenates) => {
   if (coordenates.y % 10 !== 0) {
     newCoordenates.y = Math.round(coordenates.y / 10) * 10;
   }
-
+  console.log(newCoordenates);
   return newCoordenates;
 };
 
-const drawCell = (ctx, coordenates, cellSize, align) => {
-  let newCoordenates = {};
-
-  newCoordenates = coordenates;
-  if (align) {
-    newCoordenates = getGridAlignedCoords(coordenates);
-  }
+const drawCell = (ctx, coordenates, cellSize) => {
   ctx.beginPath();
   ctx.fillStyle = "#060";
-  ctx.fillRect(newCoordenates.x, newCoordenates.y, cellSize, cellSize);
+  ctx.fillRect(coordenates.x, coordenates.y, cellSize, cellSize);
 
-  return newCoordenates;
+  return coordenates;
 };
 
 const moveCells = (cells, translationX, translationY) => {
@@ -36,4 +30,4 @@ const moveCells = (cells, translationX, translationY) => {
 };
 
 export default drawCell;
-export { drawCell, moveCells };
+export { drawCell, moveCells, getGridAlignedCoords };
