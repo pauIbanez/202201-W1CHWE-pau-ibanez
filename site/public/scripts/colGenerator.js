@@ -1,22 +1,16 @@
-const colGenerator = (cells, cellSize) => {
+const watchlistGenerator = (cells, cellSize) => {
   const columns = [];
-
-  cells.forEach(() => {
-    for (let i = -10; i < 10; cellSize) {
-      const columnExist = columns.some((column) => {
-        if (column.position === i) return true;
-        return false;
-      });
-
-      // eslint-disable-next-line no-continue
-      if (columnExist) continue;
-
-      columns.push({ position: i });
-    }
-  });
-
-  return columns;
 };
+
+// const cells = [
+//   { x: 10, y: 30 },
+//   { x: 30, y: 40 },
+//   { x: 10, y: 50 },
+//   { x: 20, y: 30 },
+//   { x: 10, y: 50 },
+// ];
+
+// console.log(colGenerator(cells, 10));
 
 const cellSorter = (cells) =>
   cells.sort((cell1, cell2) => {
