@@ -7,10 +7,10 @@ const drawCell = (ctx, coordenates, cellSize) => {
   return coordenates;
 };
 
-const moveCells = (cells, offsetX, offsetY) => {
+const moveCells = (cells, translationX, translationY) => {
   const movedCells = cells.map((cell) => ({
-    x: cell.x - offsetX,
-    y: cell.y - offsetY,
+    x: cell.x + translationX,
+    y: cell.y + translationY,
   }));
 
   return movedCells;

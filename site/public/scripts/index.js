@@ -30,9 +30,9 @@ const reset = () => {
   startPosition = null;
   drawGrid(canvas, ctx, 10);
 
-  cells.forEach((cell) => {
-    drawCell(cellCtx, { x: cell.x, y: cell.y }, 10);
-  });
+  // cells.forEach((cell) => {
+  //   drawCell(cellCtx, { x: cell.x, y: cell.y }, 10);
+  // });
 
   ctx.setTransform(1, 0, 0, 1, 0, 0);
 };
@@ -42,6 +42,7 @@ canvas.addEventListener("mousedown", (event) => {
 });
 
 canvas.addEventListener("mouseup", reset);
+canvas.addEventListener("mouseleave", reset);
 
 canvas.addEventListener("mousemove", (event) => {
   // Only move the grid when we registered a mousedown event
@@ -54,11 +55,7 @@ canvas.addEventListener("mousemove", (event) => {
   };
   ctx.translate(currentOffset.x, currentOffset.y);
   drawGrid(canvas, ctx, 10);
-  const movedCells = moveCells(
-    cells,
-    pos.x - startPosition.x,
-    pos.y - startPosition.y
-  );
+  const movedCells = moveCells(cells, currentOffset.x, currentOffset.y);
   startPosition = pos;
 
   // movedCells.forEach((cell) => {
