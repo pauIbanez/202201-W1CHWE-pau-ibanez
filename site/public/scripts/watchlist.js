@@ -9,10 +9,27 @@ const cellSorter = (cells) =>
 
 class Watchlist {
   origin;
+  cellSize;
   watchedCells = [];
 
-  constructor(origin) {
+  constructor(origin, cellSize) {
     this.origin = origin;
+    this.cellSize = cellSize;
+    this.populate();
+  }
+
+  populate() {
+    for (let x = -this.cellSize; x <= this.cellSize; x += this.cellSize) {
+      for (let y = -this.cellSize; y <= this.cellSize; y += this.cellSize) {
+        if (x !== 0 && y !== 0) {
+          const trackedCell = {};
+          trackedCell.x = this.origin + x;
+          trackedCell.y = this.origin + y;
+
+          this.watchedCells.push(trackedCell);
+        }
+      }
+    }
   }
 }
 
@@ -24,8 +41,6 @@ const watchlistGenerator = (cells, cellSize) => {
   sortedCells.forEach((cell) => {
     for (let x = -cellSize; x <= cellSize; x += cellSize) {
       for (let y = -cellSize; y <= cellSize; y += cellSize) {
-        // let watchExists = false;
-
         const relativepos = { x: cell.x + x, y: cell.y + y };
         console.log(relativepos);
         const watchExists = watchlists.some(
@@ -35,7 +50,8 @@ const watchlistGenerator = (cells, cellSize) => {
         );
         console.log(watchExists);
         if (!watchExists) {
-          watchlists.push(new Watchlist(relativepos));
+          const newWatchlist = new Watchlist(relativepos, cellSize);
+          watchlists.push(newWatchlist);
           console.log("Added watchlist with pos", relativepos);
         }
       }
@@ -43,13 +59,6 @@ const watchlistGenerator = (cells, cellSize) => {
   });
   return watchlists;
 };
-
-const cells = [
-  { x: 10, y: 10 },
-  { x: 40, y: 40 },
-];
-
-console.log(watchlistGenerator(cells, 10));
 
 export default watchlistGenerator;
 export { watchlistGenerator, cellSorter };
