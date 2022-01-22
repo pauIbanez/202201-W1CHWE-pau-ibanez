@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import { drawGrid } from "./drawGrid.js";
-import { moveCells, drawCell } from "./drawCell.js";
+import { drawCell } from "./drawCell.js";
 
 const canvas = document.getElementById("grid");
 canvas.height = window.innerHeight;
