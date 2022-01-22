@@ -37,7 +37,6 @@ class Watchlist {
           (cell) => cell.x === watchedCell.x && cell.y === watchedCell.y
         )
       ) {
-        console.log("Cell detected at ", watchedCell.x, watchedCell.y);
         aliveNeighbours += 1;
       }
     }
@@ -47,7 +46,6 @@ class Watchlist {
 }
 
 const watchlistGenerator = (cells, cellSize) => {
-  console.log(cells.length);
   const watchlists = [];
 
   cells.forEach((cell) => {

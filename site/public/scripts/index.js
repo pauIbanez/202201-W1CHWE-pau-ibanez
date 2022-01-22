@@ -115,5 +115,7 @@ canvas.addEventListener("mousemove", (event) => {
 
 setTimeout(() => {
   cells = watchlistGenerator(cellsPositions, 10);
-  runNextGen(cells, cellsPositions, cellCtx, cellCanvas);
+  console.log(cellsPositions);
+  cellsPositions = runNextGen(cells, cellsPositions, cellCtx, cellCanvas);
+  console.log(cellsPositions);
 }, 5000);
