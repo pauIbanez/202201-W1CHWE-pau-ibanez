@@ -2,6 +2,8 @@
 import { drawGrid } from "./drawGrid.js";
 import { moveCells, drawCell } from "./cellRendering.js";
 import { getGridAlignedCoords } from "./gridCoordenates.js";
+import { runNextGen } from "./gameRunner.js";
+import { watchlistGenerator } from "./watchlist.js";
 
 const canvas = document.getElementById("grid");
 canvas.height = 2000;
@@ -17,11 +19,11 @@ const paused = true;
 
 drawGrid(canvas, ctx, 10);
 
+let cellsPositions = [];
 let cells = [];
 
-const firstCell = getGridAlignedCoords({ x: 15, y: 15 });
-cells.push(drawCell(cellCtx, firstCell, 10));
-console.log(firstCell);
+// const firstCell = getGridAlignedCoords({ x: 15, y: 15 });
+// cellsPositions.push(drawCell(cellCtx, firstCell, 10));
 
 let prevMousePos;
 let mouseDown = false;
@@ -38,10 +40,9 @@ const reset = () => {
   drawGrid(canvas, ctx, 10);
   cellCtx.clearRect(0, 0, cellCanvas.width, cellCanvas.height);
 
-  cells = cells.map((cell) =>
+  cellsPositions = cellsPositions.map((cell) =>
     drawCell(cellCtx, getGridAlignedCoords(cell), 10)
   );
-  console.log(cells);
 };
 
 canvas.addEventListener("mousedown", (event) => {
@@ -58,14 +59,14 @@ canvas.addEventListener("mouseup", (event) => {
       y: event.clientY,
     });
 
-    const dupped = cells.some(
+    const dupped = cellsPositions.some(
       (cell) =>
         cell.x === clientInstanciatedCell.x &&
         cell.y === clientInstanciatedCell.y
     );
 
     if (!dupped) {
-      cells.push(drawCell(cellCtx, clientInstanciatedCell, 10));
+      cellsPositions.push(drawCell(cellCtx, clientInstanciatedCell, 10));
     }
   }
 
@@ -92,7 +93,11 @@ canvas.addEventListener("mousemove", (event) => {
   ctx.translate(mouseFrameOffset.x, mouseFrameOffset.y);
 
   drawGrid(canvas, ctx, 10);
-  const movedCells = moveCells(cells, mouseFrameOffset.x, mouseFrameOffset.y);
+  const movedCells = moveCells(
+    cellsPositions,
+    mouseFrameOffset.x,
+    mouseFrameOffset.y
+  );
   prevMousePos = mousePosThisFrame;
 
   cellCtx.clearRect(0, 0, cellCanvas.width, cellCanvas.height);
@@ -105,5 +110,10 @@ canvas.addEventListener("mousemove", (event) => {
     );
   });
 
-  cells = movedCells;
+  cellsPositions = movedCells;
 });
+
+setTimeout(() => {
+  cells = watchlistGenerator(cellsPositions, 10);
+  runNextGen(cells, cellsPositions, cellCtx, cellCanvas);
+}, 5000);

@@ -1,10 +1,15 @@
-const calculateNextGen = (cells) => {
+const calculateNextGen = (cells, cellsPositions) => {
   const nextGenCells = [];
   for (const cell of cells) {
-    cell.getStateForNextGen(cells);
+    const cellNeighbours = cell.getLiveNeighbours(cellsPositions);
+    let cellWillLive;
     if (cell.alive) {
-      nextGenCells.push(cell);
-    }
+      if (cellNeighbours < 2) cellWillLive = false;
+      if (cellNeighbours > 3) cellWillLive = false;
+      if (cellNeighbours === 2 || cellNeighbours === 3) cellWillLive = true;
+    } else if (cellNeighbours === 3) cellWillLive = true;
+
+    if (cellWillLive) nextGenCells.push({ x: cell.origin.x, y: cell.origin.y });
   }
 
   return nextGenCells;

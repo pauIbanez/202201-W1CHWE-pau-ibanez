@@ -8,7 +8,6 @@ const getGridAlignedCoords = (coordenates) => {
   if (coordenates.y % 10 !== 0) {
     newCoordenates.y = Math.floor(coordenates.y / 10) * 10;
   }
-  console.log(newCoordenates);
   return newCoordenates;
 };
 
