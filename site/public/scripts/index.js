@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import { drawGrid } from "./drawGrid.js";
-import { drawCell } from "./drawCell.js";
+import { moveCells, drawCell } from "./drawCell.js";
 
 const canvas = document.getElementById("grid");
 canvas.height = window.innerHeight;
@@ -14,7 +14,7 @@ const cellCtx = cellCanvas.getContext("2d");
 
 drawGrid(canvas, ctx, 10);
 
-const cells = [];
+let cells = [];
 
 cells.push(drawCell(cellCtx, { x: 15, y: 15 }, 10));
 
@@ -32,9 +32,9 @@ const reset = () => {
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   drawGrid(canvas, ctx, 10);
 
-  // cells.forEach((cell) => {
-  //   drawCell(cellCtx, { x: cell.x, y: cell.y }, 10);
-  // });
+  cells.forEach((cell) => {
+    drawCell(cellCtx, { x: cell.x, y: cell.y }, 10);
+  });
 };
 
 canvas.addEventListener("mousedown", (event) => {
@@ -62,12 +62,17 @@ canvas.addEventListener("mousemove", (event) => {
   ctx.translate(mouseFrameOffset.x, mouseFrameOffset.y);
 
   drawGrid(canvas, ctx, 10);
-  // const movedCells = moveCells(cells, currentOffset.x, currentOffset.y);
+  const movedCells = moveCells(cells, mouseFrameOffset.x, mouseFrameOffset.y);
   prevMousePos = mousePosThisFrame;
 
-  // movedCells.forEach((cell) => {
-  //    drawCell(ctx, { x: currentOffset.x, y: currentOffset.y }, 10);
-  // });
+  cellCtx.clearRect(0, 0, cellCanvas.width, cellCanvas.height);
+  movedCells.forEach((cell) => {
+    drawCell(
+      cellCtx,
+      { x: cell.x + mouseFrameOffset.x, y: cell.y + mouseFrameOffset.y },
+      10
+    );
+  });
 
-  // cells = movedCells;
+  cells = movedCells;
 });
