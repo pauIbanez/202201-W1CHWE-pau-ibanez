@@ -2,6 +2,7 @@
 import { drawGrid } from "./drawGrid.js";
 import { moveCells, drawCell } from "./cellRendering.js";
 import { getGridAlignedCoords } from "./gridCoordenates.js";
+import { runNextGen } from "./gameRunner";
 
 const canvas = document.getElementById("grid");
 canvas.height = 2000;
@@ -21,7 +22,6 @@ let cells = [];
 
 const firstCell = getGridAlignedCoords({ x: 15, y: 15 });
 cells.push(drawCell(cellCtx, firstCell, 10));
-console.log(firstCell);
 
 let prevMousePos;
 let mouseDown = false;
