@@ -8,7 +8,7 @@ const cellSorter = (cells) =>
   });
 
 class Watchlist {
-  origin = {};
+  origin;
   watchedCells = [];
 
   constructor(origin) {
@@ -24,25 +24,33 @@ const watchlistGenerator = (cells, cellSize) => {
   sortedCells.forEach((cell) => {
     for (let x = -cellSize; x <= cellSize; x += cellSize) {
       for (let y = -cellSize; y <= cellSize; y += cellSize) {
-        const watchExists = watchlists.some(
-          (watchlist) =>
-            watchlist.origin.x === cell.x + x && watchlist.y === cell.y + y
-        );
+        let watchExists = false;
 
-        // eslint-disable-next-line no-continue
-        if (watchExists) continue;
-
-        watchlists.push(new Watchlist({ x, y }));
+        const relativepos = { x: cell.x + x, y: cell.y + y };
+        console.log(relativepos);
+        for (const watchlist of watchlists) {
+          if (
+            watchlist.origin.x === relativepos.x &&
+            watchlist.origin.y === relativepos.y
+          ) {
+            watchExists = true;
+            break;
+          }
+        }
+        console.log(watchExists);
+        if (!watchExists) {
+          watchlists.push(new Watchlist(relativepos));
+          console.log("Added watchlist with pos", relativepos);
+        }
       }
     }
   });
-
   return watchlists;
 };
 
 const cells = [
   { x: 10, y: 10 },
-  { x: 40, y: 40 },
+  { x: 30, y: 30 },
 ];
 
 console.log(watchlistGenerator(cells, 10));
