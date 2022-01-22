@@ -1,9 +1,8 @@
 const calculateNextGen = (cells) => {
   const nextGenCells = [];
   for (const cell of cells) {
-    if (cell.getStateForNextGen(cells)) {
-      nextGenCells.push(cell);
-    }
+    const cellNeighbours = cell.getLiveNeighbours(cells);
+    if (cellNeighbours > 2) console.log(cellNeighbours);
   }
 
   return nextGenCells;

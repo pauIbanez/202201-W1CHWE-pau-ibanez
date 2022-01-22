@@ -16,7 +16,10 @@ class Watchlist {
   populate() {
     for (let x = -this.cellSize; x <= this.cellSize; x += this.cellSize) {
       for (let y = -this.cellSize; y <= this.cellSize; y += this.cellSize) {
-        if (x !== 0 && y !== 0) {
+        // console.log("seeing cell", x, y);
+        if (x === 0 && y === 0) {
+          // console.log("skipping cell ", x, y);
+        } else {
           this.watchedCells.push({
             x: this.origin.x + x,
             y: this.origin.y + y,
@@ -26,7 +29,7 @@ class Watchlist {
     }
   }
 
-  getStateForNextGen(cellsList) {
+  getLiveNeighbours(cellsList) {
     let aliveNeighbours = 0;
     for (const watchedCell of this.watchedCells) {
       if (
@@ -38,20 +41,8 @@ class Watchlist {
         aliveNeighbours += 1;
       }
     }
-    console.log(aliveNeighbours);
 
-    if (aliveNeighbours > 3) {
-      return false;
-    }
-    if (aliveNeighbours < 2) {
-      return false;
-    }
-    if (!this.alive) {
-      if (aliveNeighbours === 3) return true;
-      return false;
-    }
-
-    return true;
+    return aliveNeighbours;
   }
 }
 

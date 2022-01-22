@@ -22,8 +22,8 @@ drawGrid(canvas, ctx, 10);
 let cellsPositions = [];
 let cells = [];
 
-const firstCell = getGridAlignedCoords({ x: 15, y: 15 });
-cellsPositions.push(drawCell(cellCtx, firstCell, 10));
+// const firstCell = getGridAlignedCoords({ x: 15, y: 15 });
+// cellsPositions.push(drawCell(cellCtx, firstCell, 10));
 
 let prevMousePos;
 let mouseDown = false;

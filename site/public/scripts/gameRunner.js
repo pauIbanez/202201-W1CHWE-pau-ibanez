@@ -7,10 +7,10 @@ const runNextGen = (cells, ctx) => {
   const nextGenCells = calculateNextGen(cells);
   console.log(nextGenCells);
   // setTimeout(() => {
-  for (const cell of nextGenCells) {
-    drawCell(ctx, cell.origin, cell.cellSize);
-    console.log("Drawing cell");
-  }
+  // for (const cell of nextGenCells) {
+  //   drawCell(ctx, cell.origin, cell.cellSize);
+  //   console.log("Drawing cell");
+  // }
   // }, 500);
 };
 
