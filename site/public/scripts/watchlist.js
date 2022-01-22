@@ -24,19 +24,15 @@ const watchlistGenerator = (cells, cellSize) => {
   sortedCells.forEach((cell) => {
     for (let x = -cellSize; x <= cellSize; x += cellSize) {
       for (let y = -cellSize; y <= cellSize; y += cellSize) {
-        let watchExists = false;
+        // let watchExists = false;
 
         const relativepos = { x: cell.x + x, y: cell.y + y };
         console.log(relativepos);
-        for (const watchlist of watchlists) {
-          if (
+        const watchExists = watchlists.some(
+          (watchlist) =>
             watchlist.origin.x === relativepos.x &&
             watchlist.origin.y === relativepos.y
-          ) {
-            watchExists = true;
-            break;
-          }
-        }
+        );
         console.log(watchExists);
         if (!watchExists) {
           watchlists.push(new Watchlist(relativepos));
@@ -50,7 +46,7 @@ const watchlistGenerator = (cells, cellSize) => {
 
 const cells = [
   { x: 10, y: 10 },
-  { x: 30, y: 30 },
+  { x: 40, y: 40 },
 ];
 
 console.log(watchlistGenerator(cells, 10));
