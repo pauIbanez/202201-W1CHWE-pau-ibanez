@@ -1,6 +1,10 @@
 /* eslint-disable import/extensions */
 import { drawGrid } from "./drawGrid.js";
-import { moveCells, drawCell, getGridAlignedCoords } from "./drawCell.js";
+import { moveCells, drawCell } from "./cellRendering.js";
+import {
+  getGridAlignedCoords,
+  getMouseToGridCoordenates,
+} from "./gridCoordenates.js";
 
 const canvas = document.getElementById("grid");
 canvas.height = 2000;
