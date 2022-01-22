@@ -27,13 +27,14 @@ const getMousePos = (event) => ({
 });
 
 const reset = () => {
-  // prevMousePos = null;
   moving = false;
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   drawGrid(canvas, ctx, 10);
 
+  cellCtx.clearRect(0, 0, cellCanvas.width, cellCanvas.height);
+
   cells.forEach((cell) => {
-    drawCell(cellCtx, { x: cell.x, y: cell.y }, 10, false);
+    drawCell(cellCtx, { x: cell.x, y: cell.y }, 10, true);
   });
 };
 

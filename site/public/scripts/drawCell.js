@@ -12,11 +12,11 @@ const getGridAlignedCoords = (coordenates) => {
   return newCoordenates;
 };
 
-const drawCell = (ctx, coordenates, cellSize, newCell) => {
+const drawCell = (ctx, coordenates, cellSize, align) => {
   let newCoordenates = {};
 
   newCoordenates = coordenates;
-  if (newCell) {
+  if (align) {
     newCoordenates = getGridAlignedCoords(coordenates);
   }
   ctx.beginPath();
