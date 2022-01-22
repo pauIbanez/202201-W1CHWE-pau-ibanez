@@ -34,10 +34,10 @@ class Watchlist {
     for (const watchedCell of this.watchedCells) {
       if (
         cellsList.some(
-          (cell) =>
-            cell.origin.x === watchedCell.x && cell.origin.y === watchedCell.y
+          (cell) => cell.x === watchedCell.x && cell.y === watchedCell.y
         )
       ) {
+        console.log("Cell detected at ", watchedCell.x, watchedCell.y);
         aliveNeighbours += 1;
       }
     }

@@ -2,16 +2,18 @@
 import { calculateNextGen } from "./gameStateCalculator.js";
 import { drawCell } from "./cellRendering.js";
 
-const runNextGen = (cells, ctx) => {
-  console.log(cells);
-  const nextGenCells = calculateNextGen(cells);
+const runNextGen = (cells, cellsPositions, ctx, canvas) => {
+  console.log(cellsPositions);
+  const { cellSize } = cells[0];
+  const nextGenCells = calculateNextGen(cells, cellsPositions);
   console.log(nextGenCells);
-  // setTimeout(() => {
-  // for (const cell of nextGenCells) {
-  //   drawCell(ctx, cell.origin, cell.cellSize);
-  //   console.log("Drawing cell");
-  // }
-  // }, 500);
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (const cell of nextGenCells) {
+    drawCell(ctx, cell, cellSize);
+    console.log("Drawing cell");
+  }
 };
 
 export default runNextGen;
