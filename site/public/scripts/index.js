@@ -1,39 +1,73 @@
 /* eslint-disable import/extensions */
 import { drawGrid } from "./drawGrid.js";
+import { drawCell } from "./drawCell.js";
 
-const canvas = document.getElementById("canvas");
-canvas.height = window.innerHeight / 2;
-canvas.width = window.innerWidth / 2;
+const canvas = document.getElementById("grid");
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
 const ctx = canvas.getContext("2d");
+
+const cellCanvas = document.getElementById("canvas");
+cellCanvas.height = window.innerHeight;
+cellCanvas.width = window.innerWidth;
+const cellCtx = cellCanvas.getContext("2d");
 
 drawGrid(canvas, ctx, 10);
 
-// Grid moving stuff
-let startPosition;
-const getPos = (event) => ({
-  x: event.clientX - canvas.offsetLeft,
-  y: event.clientY - canvas.offsetTop,
+const cells = [];
+
+cells.push(drawCell(cellCtx, { x: 15, y: 15 }, 10));
+
+let prevMousePos;
+let moving = false;
+
+const getMousePos = (event) => ({
+  x: event.clientX,
+  y: event.clientY,
 });
 
 const reset = () => {
-  startPosition = null;
+  // prevMousePos = null;
+  moving = false;
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   drawGrid(canvas, ctx, 10);
+
+  // cells.forEach((cell) => {
+  //   drawCell(cellCtx, { x: cell.x, y: cell.y }, 10);
+  // });
 };
 
 canvas.addEventListener("mousedown", (event) => {
-  reset();
-  startPosition = getPos(event);
+  prevMousePos = getMousePos(event);
+  moving = true;
 });
 
 canvas.addEventListener("mouseup", reset);
+canvas.addEventListener("mouseleave", reset);
 
 canvas.addEventListener("mousemove", (event) => {
-  // Only move the grid when we registered a mousedown event
-  if (!startPosition) return;
-  const pos = getPos(event);
-  // Move coordinate system in the same way as the cursor
-  ctx.translate(pos.x - startPosition.x, pos.y - startPosition.y);
+  if (!moving) return;
+
+  const mousePosThisFrame = getMousePos(event);
+
+  // const positionThisFrame = getPos(event);
+  // console.log(event.clientX, event.clientY);
+  // console.log(positionThisFrame);
+  const mouseFrameOffset = {
+    x: mousePosThisFrame.x - prevMousePos.x,
+    y: mousePosThisFrame.y - prevMousePos.y,
+  };
+
+  // console.log(mouseFrameOffset);
+  ctx.translate(mouseFrameOffset.x, mouseFrameOffset.y);
+
   drawGrid(canvas, ctx, 10);
-  startPosition = pos;
+  // const movedCells = moveCells(cells, currentOffset.x, currentOffset.y);
+  prevMousePos = mousePosThisFrame;
+
+  // movedCells.forEach((cell) => {
+  //    drawCell(ctx, { x: currentOffset.x, y: currentOffset.y }, 10);
+  // });
+
+  // cells = movedCells;
 });

@@ -4,8 +4,10 @@ const drawGrid = (canvas, ctx, cellSize) => {
   const right = canvas.width * 4;
   const bottom = canvas.height * 4;
 
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = "gray";
+
   ctx.clearRect(left, top, right - left, bottom - top);
-  ctx.translate(0.5, 0.5);
   ctx.beginPath();
 
   for (let x = left; x < right; x += cellSize) {
@@ -16,8 +18,10 @@ const drawGrid = (canvas, ctx, cellSize) => {
     ctx.moveTo(left, y);
     ctx.lineTo(right, y);
   }
-  ctx.strokeStyle = "white";
   ctx.stroke();
+
+  ctx.fillStyle = "red";
+  ctx.fillRect(15, 15, 80, 80);
 };
 
 export default drawGrid;
