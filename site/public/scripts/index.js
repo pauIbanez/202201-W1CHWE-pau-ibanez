@@ -16,7 +16,7 @@ drawGrid(canvas, ctx, 10);
 
 let cells = [];
 
-cells.push(drawCell(cellCtx, { x: 15, y: 15 }, 10));
+cells.push(drawCell(cellCtx, { x: 15, y: 15 }, 10, true));
 
 let prevMousePos;
 let moving = false;
@@ -27,13 +27,14 @@ const getMousePos = (event) => ({
 });
 
 const reset = () => {
-  // prevMousePos = null;
   moving = false;
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   drawGrid(canvas, ctx, 10);
 
+  cellCtx.clearRect(0, 0, cellCanvas.width, cellCanvas.height);
+
   cells.forEach((cell) => {
-    drawCell(cellCtx, { x: cell.x, y: cell.y }, 10);
+    drawCell(cellCtx, { x: cell.x, y: cell.y }, 10, true);
   });
 };
 
@@ -70,7 +71,8 @@ canvas.addEventListener("mousemove", (event) => {
     drawCell(
       cellCtx,
       { x: cell.x + mouseFrameOffset.x, y: cell.y + mouseFrameOffset.y },
-      10
+      10,
+      false
     );
   });
 

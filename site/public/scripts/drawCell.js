@@ -1,9 +1,29 @@
-const drawCell = (ctx, coordenates, cellSize) => {
+const getGridAlignedCoords = (coordenates) => {
+  const newCoordenates = {};
+
+  if (coordenates.x % 10 !== 0) {
+    newCoordenates.x = Math.round(coordenates.x / 10) * 10;
+  }
+
+  if (coordenates.y % 10 !== 0) {
+    newCoordenates.y = Math.round(coordenates.y / 10) * 10;
+  }
+
+  return newCoordenates;
+};
+
+const drawCell = (ctx, coordenates, cellSize, align) => {
+  let newCoordenates = {};
+
+  newCoordenates = coordenates;
+  if (align) {
+    newCoordenates = getGridAlignedCoords(coordenates);
+  }
   ctx.beginPath();
   ctx.fillStyle = "#060";
-  ctx.fillRect(coordenates.x, coordenates.y, cellSize, cellSize);
+  ctx.fillRect(newCoordenates.x, newCoordenates.y, cellSize, cellSize);
 
-  return coordenates;
+  return newCoordenates;
 };
 
 const moveCells = (cells, translationX, translationY) => {

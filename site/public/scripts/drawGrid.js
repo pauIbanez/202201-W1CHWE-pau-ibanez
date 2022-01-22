@@ -21,7 +21,7 @@ const drawGrid = (canvas, ctx, cellSize) => {
   ctx.stroke();
 
   ctx.fillStyle = "red";
-  ctx.fillRect(15, 15, 80, 80);
+  ctx.fillRect(100, 100, 80, 80);
 };
 
 export default drawGrid;
