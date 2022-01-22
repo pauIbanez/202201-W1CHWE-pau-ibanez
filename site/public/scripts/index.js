@@ -9,6 +9,7 @@ const canvas = document.getElementById("grid");
 canvas.height = 2000;
 canvas.width = 2000;
 const ctx = canvas.getContext("2d");
+canvas.style.cursor = "pointer";
 
 const cellCanvas = document.getElementById("canvas");
 cellCanvas.height = 2000;
@@ -52,6 +53,7 @@ canvas.addEventListener("mousedown", (event) => {
 
 canvas.addEventListener("mouseup", (event) => {
   mouseDown = false;
+  canvas.style.cursor = "pointer";
 
   if (!moving && paused) {
     const clientInstanciatedCell = getGridAlignedCoords({
@@ -79,6 +81,7 @@ canvas.addEventListener("mouseleave", () => {
 canvas.addEventListener("mousemove", (event) => {
   if (!mouseDown) return;
   moving = true;
+  canvas.style.cursor = "grabbing";
   const mousePosThisFrame = getMousePos(event);
 
   // const positionThisFrame = getPos(event);
@@ -114,6 +117,11 @@ canvas.addEventListener("mousemove", (event) => {
 });
 
 setTimeout(() => {
+  if (cells.length === 0) {
+    /* Game Ovber */
+  }
   cells = watchlistGenerator(cellsPositions, 10);
-  runNextGen(cells, cellsPositions, cellCtx, cellCanvas);
+  console.log(cellsPositions);
+  cellsPositions = runNextGen(cells, cellsPositions, cellCtx, cellCanvas);
+  console.log(cellsPositions);
 }, 5000);
