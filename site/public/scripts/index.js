@@ -12,6 +12,8 @@ cellCanvas.height = window.innerHeight;
 cellCanvas.width = window.innerWidth;
 const cellCtx = cellCanvas.getContext("2d");
 
+const paused = true;
+
 drawGrid(canvas, ctx, 10);
 
 let cells = [];
