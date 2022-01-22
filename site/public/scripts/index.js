@@ -56,7 +56,7 @@ canvas.addEventListener("mouseup", (event) => {
   mouseDown = false;
 
   if (!moving && paused) {
-    const clientInstanciatedCell = getGridAlignedCoords({
+    const clientInstanciatedCell = getMouseToGridCoordenates({
       x: event.clientX,
       y: event.clientY,
     });
