@@ -15,14 +15,15 @@ cellCanvas.height = 2000;
 cellCanvas.width = 2000;
 const cellCtx = cellCanvas.getContext("2d");
 
-let paused = true;
+const paused = true;
 
 drawGrid(canvas, ctx, 10);
 
+let cellsPositions = [];
 let cells = [];
 
 const firstCell = getGridAlignedCoords({ x: 15, y: 15 });
-cells.push(drawCell(cellCtx, firstCell, 10));
+cellsPositions.push(drawCell(cellCtx, firstCell, 10));
 
 let prevMousePos;
 let mouseDown = false;
@@ -39,7 +40,7 @@ const reset = () => {
   drawGrid(canvas, ctx, 10);
   cellCtx.clearRect(0, 0, cellCanvas.width, cellCanvas.height);
 
-  cells = cells.map((cell) =>
+  cellsPositions = cellsPositions.map((cell) =>
     drawCell(cellCtx, getGridAlignedCoords(cell), 10)
   );
 };
@@ -58,14 +59,14 @@ canvas.addEventListener("mouseup", (event) => {
       y: event.clientY,
     });
 
-    const dupped = cells.some(
+    const dupped = cellsPositions.some(
       (cell) =>
         cell.x === clientInstanciatedCell.x &&
         cell.y === clientInstanciatedCell.y
     );
 
     if (!dupped) {
-      cells.push(drawCell(cellCtx, clientInstanciatedCell, 10));
+      cellsPositions.push(drawCell(cellCtx, clientInstanciatedCell, 10));
     }
   }
 
@@ -92,7 +93,11 @@ canvas.addEventListener("mousemove", (event) => {
   ctx.translate(mouseFrameOffset.x, mouseFrameOffset.y);
 
   drawGrid(canvas, ctx, 10);
-  const movedCells = moveCells(cells, mouseFrameOffset.x, mouseFrameOffset.y);
+  const movedCells = moveCells(
+    cellsPositions,
+    mouseFrameOffset.x,
+    mouseFrameOffset.y
+  );
   prevMousePos = mousePosThisFrame;
 
   cellCtx.clearRect(0, 0, cellCanvas.width, cellCanvas.height);
@@ -105,15 +110,10 @@ canvas.addEventListener("mousemove", (event) => {
     );
   });
 
-  cells = movedCells;
+  cellsPositions = movedCells;
 });
 
-const run = (cellsList) => {
-  setTimeout(() => {
-    paused = false;
-    runNextGen(watchlistGenerator(cellsList), cellCtx);
-    console.log("Loaded next gen");
-  }, 5000);
-};
-
-run(cells);
+setTimeout(() => {
+  cells = watchlistGenerator(cellsPositions, 10);
+  runNextGen(cells, cellCtx);
+}, 5000);

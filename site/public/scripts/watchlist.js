@@ -17,11 +17,10 @@ class Watchlist {
     for (let x = -this.cellSize; x <= this.cellSize; x += this.cellSize) {
       for (let y = -this.cellSize; y <= this.cellSize; y += this.cellSize) {
         if (x !== 0 && y !== 0) {
-          const trackedCell = {};
-          trackedCell.x = this.origin + x;
-          trackedCell.y = this.origin + y;
-
-          this.watchedCells.push(trackedCell);
+          this.watchedCells.push({
+            x: this.origin.x + x,
+            y: this.origin.y + y,
+          });
         }
       }
     }
@@ -39,6 +38,7 @@ class Watchlist {
         aliveNeighbours += 1;
       }
     }
+    console.log(aliveNeighbours);
 
     if (aliveNeighbours > 3) {
       return false;
@@ -56,20 +56,18 @@ class Watchlist {
 }
 
 const watchlistGenerator = (cells, cellSize) => {
-  console.log(cells);
+  console.log(cells.length);
   const watchlists = [];
 
   cells.forEach((cell) => {
     for (let x = -cellSize; x <= cellSize; x += cellSize) {
       for (let y = -cellSize; y <= cellSize; y += cellSize) {
         const relativepos = { x: cell.x + x, y: cell.y + y };
-        console.log(relativepos);
         const watchExists = watchlists.some(
           (watchlist) =>
             watchlist.origin.x === relativepos.x &&
             watchlist.origin.y === relativepos.y
         );
-        console.log(watchExists);
         if (!watchExists) {
           let newWatchlist;
           if (
@@ -84,13 +82,13 @@ const watchlistGenerator = (cells, cellSize) => {
           }
 
           watchlists.push(newWatchlist);
-          console.log("Added watchlist with pos", relativepos);
         }
       }
     }
   });
+
   return watchlists;
 };
 
 export default watchlistGenerator;
-export { watchlistGenerator, cellSorter };
+export { watchlistGenerator };
