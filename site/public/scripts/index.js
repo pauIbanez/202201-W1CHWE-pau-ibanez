@@ -3,13 +3,13 @@ import { drawGrid } from "./drawGrid.js";
 import { moveCells, drawCell, getGridAlignedCoords } from "./drawCell.js";
 
 const canvas = document.getElementById("grid");
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
+canvas.height = 2000;
+canvas.width = 2000;
 const ctx = canvas.getContext("2d");
 
 const cellCanvas = document.getElementById("canvas");
-cellCanvas.height = window.innerHeight;
-cellCanvas.width = window.innerWidth;
+cellCanvas.height = 2000;
+cellCanvas.width = 2000;
 const cellCtx = cellCanvas.getContext("2d");
 
 const paused = true;
