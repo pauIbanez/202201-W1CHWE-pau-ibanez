@@ -1,10 +1,7 @@
 /* eslint-disable import/extensions */
 import { drawGrid } from "./drawGrid.js";
 import { moveCells, drawCell } from "./cellRendering.js";
-import {
-  getGridAlignedCoords,
-  getMouseToGridCoordenates,
-} from "./gridCoordenates.js";
+import { getGridAlignedCoords } from "./gridCoordenates.js";
 
 const canvas = document.getElementById("grid");
 canvas.height = 2000;
@@ -56,7 +53,7 @@ canvas.addEventListener("mouseup", (event) => {
   mouseDown = false;
 
   if (!moving && paused) {
-    const clientInstanciatedCell = getMouseToGridCoordenates({
+    const clientInstanciatedCell = getGridAlignedCoords({
       x: event.clientX,
       y: event.clientY,
     });
