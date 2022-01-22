@@ -21,6 +21,7 @@ let cells = [];
 cells.push(drawCell(cellCtx, { x: 15, y: 15 }, 10, true));
 
 let prevMousePos;
+let mouseDown = false;
 let moving = false;
 
 const getMousePos = (event) => ({
@@ -42,15 +43,26 @@ const reset = () => {
 
 canvas.addEventListener("mousedown", (event) => {
   prevMousePos = getMousePos(event);
-  moving = true;
+  mouseDown = true;
 });
 
-canvas.addEventListener("mouseup", reset);
+canvas.addEventListener("mouseup", (event) => {
+  mouseDown = false;
+
+  if (!moving && paused) {
+    cells.push({ x: event.clientX, y: event.clientY });
+
+    console.log(event.clientX, event.clientY);
+    console.log("Attempting to create cell");
+  }
+
+  reset();
+});
 canvas.addEventListener("mouseleave", reset);
 
 canvas.addEventListener("mousemove", (event) => {
-  if (!moving) return;
-
+  if (!mouseDown) return;
+  moving = true;
   const mousePosThisFrame = getMousePos(event);
 
   // const positionThisFrame = getPos(event);
