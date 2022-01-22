@@ -4,4 +4,4 @@ const calculateNextGen = (cells) => {
 };
 
 export default calculateNextGen;
-export { calculateNextGen, calculateNextGen };
+export { calculateNextGen };

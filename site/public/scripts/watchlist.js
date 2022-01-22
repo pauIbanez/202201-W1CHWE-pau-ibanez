@@ -11,6 +11,7 @@ class Watchlist {
   origin;
   cellSize;
   watchedCells = [];
+  alive;
 
   constructor(origin, cellSize) {
     this.origin = origin;
@@ -30,6 +31,34 @@ class Watchlist {
         }
       }
     }
+  }
+
+  getStateForNextGen(cellsList) {
+    let aliveNeighbours = 0;
+    const deadNeighbours = 0;
+    for (const watchedCell of this.watchedCells) {
+      if (
+        cellsList.some(
+          (cell) =>
+            cell.origin.x === watchedCell.x && cell.origin.y === watchedCell.y
+        )
+      ) {
+        aliveNeighbours += 1;
+      }
+    }
+
+    if (aliveNeighbours > 3) {
+      return false;
+    }
+    if (aliveNeighbours < 2) {
+      return false;
+    }
+    if (!this.alive) {
+      if (aliveNeighbours === 3) return true;
+      return false;
+    }
+
+    return true;
   }
 }
 
