@@ -18,14 +18,8 @@ const cells = [];
 
 cells.push(drawCell(cellCtx, { x: 15, y: 15 }, 10));
 
-// Grid moving stuff
-let prevPosition;
 let prevMousePos;
-
-const getPos = (event) => ({
-  x: event.clientX + canvas.offsetLeft,
-  y: event.clientY + canvas.offsetTop,
-});
+let moving = false;
 
 const getMousePos = (event) => ({
   x: event.clientX,
@@ -33,8 +27,8 @@ const getMousePos = (event) => ({
 });
 
 const reset = () => {
-  // console.log(prevPosition);
-  prevMousePos = null;
+  // prevMousePos = null;
+  moving = false;
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   drawGrid(canvas, ctx, 10);
 
@@ -44,17 +38,15 @@ const reset = () => {
 };
 
 canvas.addEventListener("mousedown", (event) => {
-  // prevPosition = getPos(event);
-  // console.log(prevPosition);
   prevMousePos = getMousePos(event);
+  moving = true;
 });
 
 canvas.addEventListener("mouseup", reset);
 canvas.addEventListener("mouseleave", reset);
 
 canvas.addEventListener("mousemove", (event) => {
-  // Only move the grid when we registered a mousedown event
-  if (!prevMousePos) return;
+  if (!moving) return;
 
   const mousePosThisFrame = getMousePos(event);
 
@@ -66,7 +58,7 @@ canvas.addEventListener("mousemove", (event) => {
     y: mousePosThisFrame.y - prevMousePos.y,
   };
 
-  console.log(mouseFrameOffset);
+  // console.log(mouseFrameOffset);
   ctx.translate(mouseFrameOffset.x, mouseFrameOffset.y);
 
   drawGrid(canvas, ctx, 10);
