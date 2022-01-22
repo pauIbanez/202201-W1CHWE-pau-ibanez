@@ -57,7 +57,16 @@ canvas.addEventListener("mouseup", (event) => {
       x: event.clientX,
       y: event.clientY,
     });
-    cells.push(drawCell(cellCtx, clientInstanciatedCell, 10));
+
+    const dupped = cells.some(
+      (cell) =>
+        cell.x === clientInstanciatedCell.x &&
+        cell.y === clientInstanciatedCell.y
+    );
+
+    if (!dupped) {
+      cells.push(drawCell(cellCtx, clientInstanciatedCell, 10));
+    }
   }
 
   reset();
