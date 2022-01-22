@@ -116,12 +116,14 @@ canvas.addEventListener("mousemove", (event) => {
   cellsPositions = movedCells;
 });
 
-setTimeout(() => {
-  if (cells.length === 0) {
-    /* Game Ovber */
-  }
-  cells = watchlistGenerator(cellsPositions, 10);
-  console.log(cellsPositions);
-  cellsPositions = runNextGen(cells, cellsPositions, cellCtx, cellCanvas);
-  console.log(cellsPositions);
-}, 5000);
+const playAtCurrentState = (speed) => {
+  const intervalId = setInterval(() => {
+    cells = watchlistGenerator(cellsPositions, 10);
+    cellsPositions = runNextGen(cells, cellsPositions, cellCtx, cellCanvas);
+  }, speed);
+  return intervalId;
+};
+const pauseId = playAtCurrentState(2000);
+
+export default pauseId;
+export { pauseId };
