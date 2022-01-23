@@ -121,5 +121,9 @@ const mouseMoving = (
   cellPositions = movedCells;
 };
 
+const updateCellPositions = (newCellPositions) => {
+  cellPositions = newCellPositions;
+};
+
 export default setMouseAction;
-export { setMouseAction, mouseMoving, cellPositions };
+export { setMouseAction, mouseMoving, cellPositions, updateCellPositions };

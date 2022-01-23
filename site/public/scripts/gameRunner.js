@@ -2,7 +2,7 @@
 import { calculateNextGen } from "./gameStateCalculator.js";
 import { drawCell } from "./cellRendering.js";
 import { watchlistGenerator } from "./watchlist.js";
-import { cellPositions } from "./canvasMover.js";
+import { cellPositions, updateCellPositions } from "./canvasMover.js";
 
 let genCellPositions = [];
 
@@ -28,6 +28,7 @@ const runGame = (ctx, canvas, cellSize, speed) => {
   const intervalId = setInterval(() => {
     newCells = watchlistGenerator(genCellPositions, cellSize);
     genCellPositions = runNextGen(newCells, genCellPositions, ctx, canvas);
+    updateCellPositions(genCellPositions);
   }, speed);
 
   return intervalId;
