@@ -2,6 +2,7 @@
 import { startDemo, stopDemo } from "./demoRunner.js";
 import { setMouseAction, mouseMoving } from "./canvasMover.js";
 import { drawGrid } from "./drawGrid.js";
+import { runGame } from "./gameRunner.js";
 
 const gridCanvas = document.getElementById("grid-canvas");
 gridCanvas.height = 2000;
@@ -17,12 +18,15 @@ const playButton = document.getElementById("play-button");
 const templateButton = document.getElementById("template-button");
 const mainUI = document.getElementById("main-ui");
 const gameHTML = document.getElementById("game-menu");
+const mainGameButton = document.getElementById("main-button");
 
 let paused = false;
 const cellSize = 20;
 const currentPlayAction = 1;
+const gameSpeed = 300;
 
 const demoId = startDemo(gridCanvas, gridCtx, cellCanvas, cellCtx, cellSize);
+let gameId;
 
 playButton.addEventListener("click", () => {
   switch (currentPlayAction) {
@@ -68,4 +72,9 @@ gridCanvas.addEventListener("mouseleave", () => {
 
 gridCanvas.addEventListener("mousemove", (event) => {
   mouseMoving(event, gridCtx, gridCanvas, cellCtx, cellCanvas, cellSize);
+});
+
+mainGameButton.addEventListener("click", () => {
+  paused = !paused;
+  gameId = runGame(cellCtx, cellCanvas, cellSize, gameSpeed);
 });

@@ -20,11 +20,9 @@ const reset = (gridCtx, gridCanvas, cellCtx, cellCanvas, cellSize) => {
   drawGrid(gridCanvas, gridCtx, cellSize);
   cellCtx.clearRect(0, 0, cellCanvas.width, cellCanvas.height);
 
-  const newCellPositions = cellPositions.map((cell) =>
+  cellPositions = cellPositions.map((cell) =>
     drawCell(cellCtx, getGridAlignedCoords(cell, cellSize), cellSize)
   );
-
-  return newCellPositions;
 };
 
 const setMouseAction = (
@@ -125,4 +123,4 @@ const mouseMoving = (
 };
 
 export default setMouseAction;
-export { setMouseAction, mouseMoving };
+export { setMouseAction, mouseMoving, cellPositions };
