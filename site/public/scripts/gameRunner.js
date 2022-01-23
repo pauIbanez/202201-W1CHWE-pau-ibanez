@@ -17,8 +17,8 @@ const runNextGen = (cells, cellsPositions, ctx, canvas) => {
 
 const runGame = (ctx, canvas, cellPositions, cells, cellSize, speed) => {
   const intervalId = setInterval(() => {
-    cells = watchlistGenerator(cellPositions, cellSize);
-    cellPositions = runNextGen(cells, cellPositions, ctx, canvas);
+    const newCells = watchlistGenerator(cellPositions, cellSize);
+    const newCellPositions = runNextGen(newCells, cellPositions, ctx, canvas);
   }, speed);
   return intervalId;
 };
