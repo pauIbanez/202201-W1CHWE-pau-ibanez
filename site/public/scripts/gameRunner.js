@@ -39,7 +39,7 @@ const updateCounters = () => {
 const runGame = (ctx, canvas, cellSize, speed) => {
   let newCells = [];
   genCellPositions = cellPositions;
-  const intervalId = setInterval(() => {
+  return setInterval(() => {
     if (genCellPositions.length === 0) {
       return;
     }
@@ -52,8 +52,6 @@ const runGame = (ctx, canvas, cellSize, speed) => {
     currentLivingCells = genCellPositions.length;
     totalCells += currentLivingCells;
   }, speed);
-
-  return intervalId;
 };
 
 const clearCanvas = () => {
