@@ -236,8 +236,13 @@ li {
         font-weight: 600;
         font-size: 15px;
         flex: 1;
-        transition: all ease-in-out 0.5s;
+        transition: all ease-in-out 0.2s;
         cursor: pointer;
+
+        &:hover {
+          background-color: var(--primary-color);
+          color: white;
+        }
 
         &--main {
           color: white;
