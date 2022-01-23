@@ -24,7 +24,7 @@ const cellSize = 20;
 drawGrid(canvas, ctx, cellSize);
 
 let cellsPositions = [];
-const cells = [];
+let cells = [];
 
 // const firstCell = getGridAlignedCoords({ x: 15, y: 15 });
 // cellsPositions.push(drawCell(cellCtx, firstCell, 10));
@@ -124,8 +124,8 @@ canvas.addEventListener("mousemove", (event) => {
 
 const playAtCurrentState = (speed) => {
   const intervalId = setInterval(() => {
-    // cells = watchlistGenerator(cellsPositions, cellSize);
-    // cellsPositions = runNextGen(cells, cellsPositions, cellCtx, cellCanvas);
+    cells = watchlistGenerator(cellsPositions, cellSize);
+    cellsPositions = runNextGen(cells, cellsPositions, cellCtx, cellCanvas);
     console.log(cellsPositions);
   }, speed);
   return intervalId;
