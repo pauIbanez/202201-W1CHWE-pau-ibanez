@@ -1,3 +1,6 @@
+@import url(../fonts/bahnschrift.ttf);
+@import url(../fonts/BAUHS93.TTF);
+
 * {
   box-sizing: border-box;
 }
@@ -7,6 +10,7 @@ html {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  font-family: "bahnschrift", "sans-serif";
 }
 
 .main-ui {
@@ -14,10 +18,15 @@ html {
   top: 0;
   right: 0;
   display: flex;
-  padding-left: 20px;
+  padding: 80px;
   width: 900px;
   height: 100%;
   background-color: #dedede;
+  flex-direction: column;
+
+  h1 {
+    font-family: "Bauhaus 93", "sans-serif";
+  }
 }
 
 .sources {
@@ -35,6 +44,11 @@ html {
   width: 1700px;
   pointer-events: none;
   background-color: #383838;
+
+  &____canvas {
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .canvas {
