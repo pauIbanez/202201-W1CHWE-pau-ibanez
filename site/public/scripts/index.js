@@ -7,7 +7,7 @@ import {
   updateCellPositions,
 } from "./canvasMover.js";
 import { drawGrid } from "./drawGrid.js";
-import { runGame, stopGame } from "./gameRunner.js";
+import { clearCanvas, runGame, stopGame } from "./gameRunner.js";
 
 const gridCanvas = document.getElementById("grid-canvas");
 gridCanvas.height = 2000;
@@ -108,6 +108,7 @@ resetGameButton.addEventListener("click", () => {
   mainGameButton.innerText = "Start";
   cellCtx.clearRect(0, 0, cellCanvas.width, cellCanvas.height);
   updateCellPositions([]);
+  clearCanvas();
 });
 
 quitGameButton.addEventListener("click", () => {
