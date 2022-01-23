@@ -16,9 +16,8 @@ class Watchlist {
   populate() {
     for (let x = -this.cellSize; x <= this.cellSize; x += this.cellSize) {
       for (let y = -this.cellSize; y <= this.cellSize; y += this.cellSize) {
-        // console.log("seeing cell", x, y);
         if (x === 0 && y === 0) {
-          // console.log("skipping cell ", x, y);
+          // This is wierd
         } else {
           this.watchedCells.push({
             x: this.origin.x + x,
