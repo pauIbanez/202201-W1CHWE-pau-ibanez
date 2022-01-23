@@ -25,6 +25,7 @@ const mainUI = document.getElementById("main-ui");
 const gameHTML = document.getElementById("game-menu");
 const mainGameButton = document.getElementById("main-button");
 const resetGameButton = document.getElementById("reset-button");
+const quitGameButton = document.getElementById("quit-button");
 
 let paused = true;
 const cellSize = 20;
@@ -112,6 +113,10 @@ const gameEnded = () => {
   paused = true;
   mainGameButton.innerText = "Start";
 };
+
+quitGameButton.addEventListener("click", () => {
+  window.location.reload();
+});
 
 export default gameEnded;
 export { gameEnded };
