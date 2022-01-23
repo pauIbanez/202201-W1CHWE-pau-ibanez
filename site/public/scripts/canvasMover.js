@@ -33,7 +33,6 @@ const setMouseAction = (
   gridCanvas,
   cellCtx,
   cellCanvas,
-  paused,
   cellSize
 ) => {
   mouseDown = state;
@@ -45,7 +44,7 @@ const setMouseAction = (
         // eslint-disable-next-line no-param-reassign
         gridCanvas.style.cursor = "pointer";
 
-        if (!moving && paused) {
+        if (!moving) {
           const clientInstanciatedCell = getGridAlignedCoords(
             {
               x: event.clientX,

@@ -2,7 +2,7 @@
 import { startDemo, stopDemo } from "./demoRunner.js";
 import { setMouseAction, mouseMoving, cellPositions } from "./canvasMover.js";
 import { drawGrid } from "./drawGrid.js";
-import { runGame } from "./gameRunner.js";
+import { runGame, stopGame } from "./gameRunner.js";
 
 const gridCanvas = document.getElementById("grid-canvas");
 gridCanvas.height = 2000;
@@ -20,7 +20,7 @@ const mainUI = document.getElementById("main-ui");
 const gameHTML = document.getElementById("game-menu");
 const mainGameButton = document.getElementById("main-button");
 
-let paused = false;
+let paused = true;
 const cellSize = 20;
 const currentPlayAction = 1;
 const gameSpeed = 300;
@@ -61,7 +61,6 @@ gridCanvas.addEventListener("mouseup", (event) => {
     gridCanvas,
     cellCtx,
     cellCanvas,
-    paused,
     cellSize
   );
 });
@@ -75,8 +74,14 @@ gridCanvas.addEventListener("mousemove", (event) => {
 });
 
 mainGameButton.addEventListener("click", () => {
-  if (cellPositions.length !== 0) {
-    paused = !paused;
+  if (paused && cellPositions.length !== 0) {
+    paused = false;
     gameId = runGame(cellCtx, cellCanvas, cellSize, gameSpeed);
+    console.log();
+    mainGameButton.innerText = "Pause";
+  } else if (!paused) {
+    paused = true;
+    stopGame(gameId);
+    mainGameButton.innerText = "Start";
   }
 });
