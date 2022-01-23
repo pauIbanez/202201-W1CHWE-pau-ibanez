@@ -14,8 +14,8 @@ const demoCellCtx = demoCellCanvas.getContext("2d");
 
 const cellSize = 20;
 const demoSpeed = 100;
-let demoIntervalId;
-let demoCellPositions = [
+
+const demoCellPositions = [
   { x: 180, y: 120 },
   { x: 180, y: 140 },
   { x: 180, y: 160 },
@@ -75,17 +75,10 @@ let demoCellPositions = [
 
 drawDemoGrid(cellSize, demoGridCtx, demoGridCanvas);
 
-const handleData = (dataObject) => {
-  demoCellPositions = dataObject.cellPositions;
-  demoIntervalId = dataObject.id;
-};
-
-const returnGameData = runGame(
+const demoIntervalId = runGame(
   demoCellCtx,
   demoCellCanvas,
   demoCellPositions,
   cellSize,
   demoSpeed
 );
-
-handleData(returnGameData);
