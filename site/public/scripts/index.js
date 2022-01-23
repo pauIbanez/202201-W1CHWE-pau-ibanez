@@ -12,6 +12,7 @@ demoCellCanvas.width = 2000;
 const demoCellCtx = demoCellCanvas.getContext("2d");
 
 const playButton = document.getElementById("play-button");
+const templateButton = document.getElementById("template-button");
 
 const cellSize = 20;
 
