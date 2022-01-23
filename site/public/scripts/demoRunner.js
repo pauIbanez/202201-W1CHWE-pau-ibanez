@@ -73,12 +73,10 @@ const stopDemo = (demoId, ctx, canvas) => {
 const runDemo = (ctx, canvas, cellSize, speed) => {
   let newCells = [];
   genCellPositions = demoCellPositions;
-  const intervalId = setInterval(() => {
+  return setInterval(() => {
     newCells = watchlistGenerator(genCellPositions, cellSize);
     genCellPositions = runNextGen(newCells, genCellPositions, ctx, canvas);
   }, speed);
-
-  return intervalId;
 };
 
 const startDemo = (
@@ -90,13 +88,7 @@ const startDemo = (
 ) => {
   drawDemoGrid(cellSize, demoGridCtx, demoGridCanvas);
 
-  const demoIntervalId = runDemo(
-    demoCellCtx,
-    demoCellCanvas,
-    cellSize,
-    demoSpeed
-  );
-  return demoIntervalId;
+  return runDemo(demoCellCtx, demoCellCanvas, cellSize, demoSpeed);
 };
 
 export default startDemo;
