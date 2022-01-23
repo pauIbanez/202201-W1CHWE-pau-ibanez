@@ -70,6 +70,7 @@ html {
       &:hover {
         background-color: white;
         color: var(--primary-color);
+        cursor: pointer;
       }
     }
 
@@ -86,6 +87,7 @@ html {
       &:hover {
         background-color: var(--primary-color);
         color: white;
+        cursor: pointer;
       }
     }
 
@@ -100,6 +102,18 @@ html {
   bottom: 0;
   right: 0;
   margin: 30px;
+
+  &__more-info {
+    color: var(--primary-color);
+
+    &:hover {
+      color: var(--seccondary-color);
+    }
+
+    &:visited {
+      color: var(--primary-color);
+    }
+  }
 }
 
 .demo-game {
