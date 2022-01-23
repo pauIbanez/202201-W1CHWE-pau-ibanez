@@ -123,6 +123,8 @@ quitGameButton.addEventListener("click", () => {
 
 speedGameSlider.oninput = () => {
   gameSpeed = 1000 - speedGameSlider.value;
-  stopGame(gameId);
-  gameId = runGame(cellCtx, cellCanvas, cellSize, gameSpeed);
+  if (!paused) {
+    stopGame(gameId);
+    gameId = runGame(cellCtx, cellCanvas, cellSize, gameSpeed);
+  }
 };
