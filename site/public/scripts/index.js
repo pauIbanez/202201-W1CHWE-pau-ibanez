@@ -3,17 +3,17 @@ import { watchlistGenerator } from "./watchlist.js";
 import { runNextGen } from "./gameRunner.js";
 
 const demoGridCanvas = document.getElementById("demo-grid-canvas");
-demoGridCanvas.height = 1700;
-demoGridCanvas.width = 1700;
+demoGridCanvas.height = 2000;
+demoGridCanvas.width = 2000;
 const demoGridCtx = demoGridCanvas.getContext("2d");
 
 const demoCellCanvas = document.getElementById("demo-cell-canvas");
-demoCellCanvas.height = 1700;
-demoCellCanvas.width = 1700;
+demoCellCanvas.height = 2000;
+demoCellCanvas.width = 2000;
 const demoCellCtx = demoCellCanvas.getContext("2d");
 
 const cellSize = 20;
-const demoSpeed = 500;
+const demoSpeed = 100;
 let demoCellPositions = [
   { x: 180, y: 120 },
   { x: 180, y: 140 },
