@@ -20,7 +20,6 @@ cellCanvas.width = 2000;
 const cellCtx = cellCanvas.getContext("2d");
 
 const playButton = document.getElementById("play-button");
-const templateButton = document.getElementById("template-button");
 const mainUI = document.getElementById("main-ui");
 const gameHTML = document.getElementById("game-menu");
 const mainGameButton = document.getElementById("main-button");
@@ -59,8 +58,6 @@ playButton.addEventListener("click", () => {
       break;
   }
 });
-
-templateButton.addEventListener("click", () => {});
 
 gridCanvas.addEventListener("mousedown", (event) => {
   setMouseAction(true, 1, event);
