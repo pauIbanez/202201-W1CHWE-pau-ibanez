@@ -175,7 +175,7 @@ li {
     top: 0;
     right: 0;
     display: flex;
-    padding: 20px;
+    padding: 30px;
     width: 300px;
     height: 100%;
     background-color: #dedede;
@@ -183,7 +183,7 @@ li {
     flex-direction: column;
     color: var(--seccondary-color);
     transition: all ease-in-out 0.5s;
-    transform: translateX(280px);
+    transform: translateX(270px);
     pointer-events: visible;
 
     .section-info {
