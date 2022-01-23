@@ -125,6 +125,7 @@ html {
   width: 2000px;
   pointer-events: none;
   background-color: #383838;
+  pointer-events: visible;
 
   .canvas {
     position: fixed;
@@ -155,6 +156,7 @@ html {
   100% {
     transform: translateX(900px);
     display: none;
+    pointer-events: none;
   }
 }
 
