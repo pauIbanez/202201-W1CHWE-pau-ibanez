@@ -62,8 +62,9 @@ const demoCellPositions = [
   { x: 140, y: 720 },
 ];
 
-const stopDemo = (demoId) => {
+const stopDemo = (demoId, ctx, canvas) => {
   clearInterval(demoId);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 };
 
 const startDemo = (

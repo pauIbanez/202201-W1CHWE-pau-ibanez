@@ -5,6 +5,10 @@ import { watchlistGenerator } from "./watchlist.js";
 
 let genCellPositions = [];
 
+const clearCanvas = () => {
+  genCellPositions = [];
+};
+
 const runNextGen = (cells, cellsPositions, ctx, canvas) => {
   const { cellSize } = cells[0];
   const nextGenCells = calculateNextGen(cells, cellsPositions);
@@ -29,5 +33,9 @@ const runGame = (ctx, canvas, cellPositions, cellSize, speed) => {
   return intervalId;
 };
 
+const stopGame = (gameId) => {
+  clearInterval(gameId);
+};
+
 export default runGame;
-export { runGame };
+export { runGame, clearCanvas, stopGame };

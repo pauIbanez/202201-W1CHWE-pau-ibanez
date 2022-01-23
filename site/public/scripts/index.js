@@ -13,17 +13,21 @@ const cellCtx = cellCanvas.getContext("2d");
 
 const playButton = document.getElementById("play-button");
 const templateButton = document.getElementById("template-button");
+const mainUI = document.getElementById("main-ui");
 
+let paused = false;
 const cellSize = 20;
 const currentPlayAction = 1;
 
 const demoId = startDemo(gridCanvas, gridCtx, cellCanvas, cellCtx, cellSize);
 
 playButton.addEventListener("click", () => {
-  stopDemo(demoId);
-
   switch (currentPlayAction) {
     case 1:
+      stopDemo(demoId, cellCtx, cellCanvas);
+      paused = true;
+      mainUI.classList.add("start-hide");
+      // Clear html
       break;
 
     case 2:
