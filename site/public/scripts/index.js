@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
-import { watchlistGenerator } from "./watchlist.js";
-import { runNextGen } from "./gameRunner.js";
+import { runGame } from "./gameRunner.js";
+import { drawDemoGrid } from "./drawGrid.js";
 
 const demoGridCanvas = document.getElementById("demo-grid-canvas");
 demoGridCanvas.height = 2000;
@@ -14,7 +14,8 @@ const demoCellCtx = demoCellCanvas.getContext("2d");
 
 const cellSize = 20;
 const demoSpeed = 100;
-let demoCellPositions = [
+
+const demoCellPositions = [
   { x: 180, y: 120 },
   { x: 180, y: 140 },
   { x: 180, y: 160 },
@@ -71,38 +72,14 @@ let demoCellPositions = [
   { x: 160, y: 720 },
   { x: 140, y: 720 },
 ];
-let demoCells = [];
-
-const drawDemoGrid = (gap, ctx, canvas) => {
-  ctx.lineWidth = 1;
-  ctx.strokeStyle = "gray";
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.beginPath();
-
-  for (let x = 0; x < canvas.width; x += gap) {
-    ctx.moveTo(x, 0);
-    ctx.lineTo(x, canvas.height);
-  }
-  for (let y = 0; y < canvas.height; y += gap) {
-    ctx.moveTo(0, y);
-    ctx.lineTo(canvas.width, y);
-  }
-  ctx.stroke();
-};
 
 drawDemoGrid(cellSize, demoGridCtx, demoGridCanvas);
 
-const runDemo = (speed) => {
-  const intervalId = setInterval(() => {
-    demoCells = watchlistGenerator(demoCellPositions, cellSize);
-    demoCellPositions = runNextGen(
-      demoCells,
-      demoCellPositions,
-      demoCellCtx,
-      demoCellCanvas
-    );
-  }, speed);
-  return intervalId;
-};
-
-runDemo(demoSpeed);
+// eslint-disable-next-line no-unused-vars
+const demoIntervalId = runGame(
+  demoCellCtx,
+  demoCellCanvas,
+  demoCellPositions,
+  cellSize,
+  demoSpeed
+);
