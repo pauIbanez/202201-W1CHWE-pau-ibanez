@@ -4,6 +4,7 @@ import { moveCells, drawCell } from "./cellRendering.js";
 import { getGridAlignedCoords } from "./gridCoordenates.js";
 import { runNextGen } from "./gameRunner.js";
 import { watchlistGenerator } from "./watchlist.js";
+// import { scaleCanvas } from "./scaleHandler.js";
 
 const canvas = document.getElementById("grid");
 canvas.height = 2000;
@@ -18,7 +19,9 @@ const cellCtx = cellCanvas.getContext("2d");
 
 const paused = true;
 
-drawGrid(canvas, ctx, 10);
+const cellSize = 20;
+
+drawGrid(canvas, ctx, cellSize);
 
 let cellsPositions = [];
 let cells = [];
@@ -38,11 +41,11 @@ const getMousePos = (event) => ({
 const reset = () => {
   moving = false;
   ctx.setTransform(1, 0, 0, 1, 0, 0);
-  drawGrid(canvas, ctx, 10);
+  drawGrid(canvas, ctx, cellSize);
   cellCtx.clearRect(0, 0, cellCanvas.width, cellCanvas.height);
 
   cellsPositions = cellsPositions.map((cell) =>
-    drawCell(cellCtx, getGridAlignedCoords(cell), 10)
+    drawCell(cellCtx, getGridAlignedCoords(cell, cellSize), cellSize)
   );
 };
 
@@ -56,10 +59,13 @@ canvas.addEventListener("mouseup", (event) => {
   canvas.style.cursor = "pointer";
 
   if (!moving && paused) {
-    const clientInstanciatedCell = getGridAlignedCoords({
-      x: event.clientX,
-      y: event.clientY,
-    });
+    const clientInstanciatedCell = getGridAlignedCoords(
+      {
+        x: event.clientX,
+        y: event.clientY,
+      },
+      cellSize
+    );
 
     const dupped = cellsPositions.some(
       (cell) =>
@@ -68,7 +74,7 @@ canvas.addEventListener("mouseup", (event) => {
     );
 
     if (!dupped) {
-      cellsPositions.push(drawCell(cellCtx, clientInstanciatedCell, 10));
+      cellsPositions.push(drawCell(cellCtx, clientInstanciatedCell, cellSize));
     }
   }
 
@@ -95,7 +101,7 @@ canvas.addEventListener("mousemove", (event) => {
   // console.log(mouseFrameOffset);
   ctx.translate(mouseFrameOffset.x, mouseFrameOffset.y);
 
-  drawGrid(canvas, ctx, 10);
+  drawGrid(canvas, ctx, cellSize);
   const movedCells = moveCells(
     cellsPositions,
     mouseFrameOffset.x,
@@ -108,7 +114,7 @@ canvas.addEventListener("mousemove", (event) => {
     drawCell(
       cellCtx,
       { x: cell.x + mouseFrameOffset.x, y: cell.y + mouseFrameOffset.y },
-      10,
+      cellSize,
       false
     );
   });
@@ -118,7 +124,7 @@ canvas.addEventListener("mousemove", (event) => {
 
 const playAtCurrentState = (speed) => {
   const intervalId = setInterval(() => {
-    cells = watchlistGenerator(cellsPositions, 10);
+    cells = watchlistGenerator(cellsPositions, cellSize);
     cellsPositions = runNextGen(cells, cellsPositions, cellCtx, cellCanvas);
   }, speed);
   return intervalId;
