@@ -26,11 +26,12 @@ const gameHTML = document.getElementById("game-menu");
 const mainGameButton = document.getElementById("main-button");
 const resetGameButton = document.getElementById("reset-button");
 const quitGameButton = document.getElementById("quit-button");
+const speedGameSlider = document.getElementById("slider");
 
 let paused = true;
 const cellSize = 20;
 const currentPlayAction = 1;
-const gameSpeed = 300;
+let gameSpeed = 300;
 
 const demoId = startDemo(gridCanvas, gridCtx, cellCanvas, cellCtx, cellSize);
 let gameId;
@@ -109,14 +110,12 @@ resetGameButton.addEventListener("click", () => {
   updateCellPositions([]);
 });
 
-const gameEnded = () => {
-  paused = true;
-  mainGameButton.innerText = "Start";
-};
-
 quitGameButton.addEventListener("click", () => {
   window.location.reload();
 });
 
-export default gameEnded;
-export { gameEnded };
+speedGameSlider.oninput = () => {
+  gameSpeed = 1000 - speedGameSlider.value;
+  stopGame(gameId);
+  gameId = runGame(cellCtx, cellCanvas, cellSize, gameSpeed);
+};
