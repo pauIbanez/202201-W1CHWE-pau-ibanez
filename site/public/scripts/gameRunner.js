@@ -16,11 +16,17 @@ const runNextGen = (cells, cellsPositions, ctx, canvas) => {
 };
 
 const runGame = (ctx, canvas, cellPositions, cells, cellSize, speed) => {
+  let newCells = [];
+  let newCellPositions = [];
   const intervalId = setInterval(() => {
-    const newCells = watchlistGenerator(cellPositions, cellSize);
-    const newCellPositions = runNextGen(newCells, cellPositions, ctx, canvas);
+    newCells = watchlistGenerator(cellPositions, cellSize);
+    newCellPositions = runNextGen(newCells, cellPositions, ctx, canvas);
   }, speed);
-  return intervalId;
+  return {
+    id: intervalId,
+    cells: newCells,
+    cellPositions: newCellPositions,
+  };
 };
 
 export default runGame;
