@@ -16,6 +16,7 @@ const cellCtx = cellCanvas.getContext("2d");
 const playButton = document.getElementById("play-button");
 const templateButton = document.getElementById("template-button");
 const mainUI = document.getElementById("main-ui");
+const gameHTML = document.getElementById("game-menu");
 
 let paused = false;
 const cellSize = 20;
@@ -30,6 +31,7 @@ playButton.addEventListener("click", () => {
       paused = true;
       mainUI.classList.add("start-hide");
       drawGrid(gridCanvas, gridCtx, cellSize);
+      gameHTML.classList.remove("hide");
       break;
 
     case 2:
