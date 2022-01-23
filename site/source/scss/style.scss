@@ -318,6 +318,10 @@ li {
   }
 }
 
+.unclickable {
+  pointer-events: none;
+}
+
 @keyframes start-hide {
   0% {
     transform: translateX(0);
