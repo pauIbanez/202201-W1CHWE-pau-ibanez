@@ -2,8 +2,8 @@
 import { drawGrid } from "./drawGrid.js";
 import { moveCells, drawCell } from "./cellRendering.js";
 import { getGridAlignedCoords } from "./gridCoordenates.js";
-import { runNextGen } from "./gameRunner.js";
-import { watchlistGenerator } from "./watchlist.js";
+// import { runNextGen } from "./gameRunner.js";
+// import { watchlistGenerator } from "./watchlist.js";
 // import { scaleCanvas } from "./scaleHandler.js";
 
 const canvas = document.getElementById("grid");
@@ -24,7 +24,6 @@ const cellSize = 20;
 drawGrid(canvas, ctx, cellSize);
 
 let cellsPositions = [];
-let cells = [];
 
 // const firstCell = getGridAlignedCoords({ x: 15, y: 15 });
 // cellsPositions.push(drawCell(cellCtx, firstCell, 10));
@@ -122,15 +121,15 @@ canvas.addEventListener("mousemove", (event) => {
   cellsPositions = movedCells;
 });
 
-const playAtCurrentState = (speed) => {
-  const intervalId = setInterval(() => {
-    cells = watchlistGenerator(cellsPositions, cellSize);
-    cellsPositions = runNextGen(cells, cellsPositions, cellCtx, cellCanvas);
-    console.log(cellsPositions);
-  }, speed);
-  return intervalId;
-};
-const pauseId = playAtCurrentState(20000);
+// const playAtCurrentState = (speed) => {
+//   const intervalId = setInterval(() => {
+//     cells = watchlistGenerator(cellsPositions, cellSize);
+//     cellsPositions = runNextGen(cells, cellsPositions, cellCtx, cellCanvas);
+//     console.log(cellsPositions);
+//   }, speed);
+//   return intervalId;
+// };
+// const pauseId = playAtCurrentState(20000);
 
-export default pauseId;
-export { pauseId };
+// export default pauseId;
+// export { pauseId };

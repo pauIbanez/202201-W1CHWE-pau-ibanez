@@ -75,6 +75,7 @@ const demoCellPositions = [
 
 drawDemoGrid(cellSize, demoGridCtx, demoGridCanvas);
 
+// eslint-disable-next-line no-unused-vars
 const demoIntervalId = runGame(
   demoCellCtx,
   demoCellCanvas,
