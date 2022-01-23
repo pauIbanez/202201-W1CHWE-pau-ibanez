@@ -1,15 +1,15 @@
 /* eslint-disable import/extensions */
-import { startDemo } from "./demoRunner.js";
+import { startDemo, stopDemo } from "./demoRunner.js";
 
-const gridCanvas = document.getElementById("demo-grid-canvas");
+const gridCanvas = document.getElementById("grid-canvas");
 gridCanvas.height = 2000;
 gridCanvas.width = 2000;
-const gridCtx = demoGridCanvas.getContext("2d");
+const gridCtx = gridCanvas.getContext("2d");
 
-const cellCanvas = document.getElementById("demo-cell-canvas");
+const cellCanvas = document.getElementById("cell-canvas");
 cellCanvas.height = 2000;
 cellCanvas.width = 2000;
-const cellCtx = demoCellCanvas.getContext("2d");
+const cellCtx = cellCanvas.getContext("2d");
 
 const playButton = document.getElementById("play-button");
 const templateButton = document.getElementById("template-button");
@@ -20,6 +20,8 @@ const currentPlayAction = 1;
 const demoId = startDemo(gridCanvas, gridCtx, cellCanvas, cellCtx, cellSize);
 
 playButton.addEventListener("click", () => {
+  stopDemo(demoId);
+
   switch (currentPlayAction) {
     case 1:
       break;
