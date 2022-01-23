@@ -19,9 +19,6 @@ const drawGrid = (canvas, ctx, cellSize) => {
     ctx.lineTo(right, y);
   }
   ctx.stroke();
-
-  ctx.fillStyle = "red";
-  ctx.fillRect(100, 100, 80, 80);
 };
 
 const drawDemoGrid = (gap, ctx, canvas) => {
