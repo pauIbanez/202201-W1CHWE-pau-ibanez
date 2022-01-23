@@ -42,6 +42,57 @@ html {
     text-align: justify;
     padding-right: 100px;
   }
+
+  &__controlls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    flex: 1;
+    font-weight: 600;
+    align-items: flex-end;
+
+    &__play-button {
+      width: 250px;
+      height: 50px;
+      background-color: var(--primary-color);
+      border-radius: 50px;
+      border: 2px solid var(--primary-color);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      letter-spacing: 1px;
+      font-family: "bahnschrift", "sans-serif";
+      transition: all 0.5s;
+
+      &:hover {
+        background-color: white;
+        color: var(--primary-color);
+      }
+    }
+
+    &__template-button {
+      width: 150px;
+      height: 40px;
+      border: 2px solid var(--primary-color);
+      color: var(--seccondary-color);
+      margin-left: 10px;
+      font-size: 15px;
+      font-family: "bahnschrift", "sans-serif";
+      transition: all 0.5s;
+
+      &:hover {
+        background-color: var(--primary-color);
+        color: white;
+      }
+    }
+
+    &__empty-canvas-button {
+      display: none;
+    }
+  }
 }
 
 .sources {
