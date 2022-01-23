@@ -31,9 +31,6 @@ const runGame = (ctx, canvas, cellSize, speed) => {
   genCellPositions = cellPositions;
   const intervalId = setInterval(() => {
     if (genCellPositions.length === 0) {
-      // stopGame(intervalId);
-      // const mainGameButton = document.getElementById("main-button");
-      // mainGameButton.innerText = "Start";
       return;
     }
     newCells = watchlistGenerator(genCellPositions, cellSize);

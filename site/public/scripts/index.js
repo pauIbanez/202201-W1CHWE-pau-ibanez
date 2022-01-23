@@ -1,6 +1,11 @@
 /* eslint-disable import/extensions */
 import { startDemo, stopDemo } from "./demoRunner.js";
-import { setMouseAction, mouseMoving, cellPositions } from "./canvasMover.js";
+import {
+  setMouseAction,
+  mouseMoving,
+  cellPositions,
+  updateCellPositions,
+} from "./canvasMover.js";
 import { drawGrid } from "./drawGrid.js";
 import { runGame, stopGame } from "./gameRunner.js";
 
@@ -19,11 +24,14 @@ const templateButton = document.getElementById("template-button");
 const mainUI = document.getElementById("main-ui");
 const gameHTML = document.getElementById("game-menu");
 const mainGameButton = document.getElementById("main-button");
+const resetGameButton = document.getElementById("reset-button");
+const quitGameButton = document.getElementById("quit-button");
+const speedGameSlider = document.getElementById("slider");
 
 let paused = true;
 const cellSize = 20;
 const currentPlayAction = 1;
-const gameSpeed = 300;
+let gameSpeed = 300;
 
 const demoId = startDemo(gridCanvas, gridCtx, cellCanvas, cellCtx, cellSize);
 let gameId;
@@ -94,10 +102,20 @@ mainGameButton.addEventListener("click", () => {
   }
 });
 
-const gameEnded = () => {
+resetGameButton.addEventListener("click", () => {
   paused = true;
+  stopGame(gameId);
   mainGameButton.innerText = "Start";
-};
+  cellCtx.clearRect(0, 0, cellCanvas.width, cellCanvas.height);
+  updateCellPositions([]);
+});
 
-export default gameEnded;
-export { gameEnded };
+quitGameButton.addEventListener("click", () => {
+  window.location.reload();
+});
+
+speedGameSlider.oninput = () => {
+  gameSpeed = 1000 - speedGameSlider.value;
+  stopGame(gameId);
+  gameId = runGame(cellCtx, cellCanvas, cellSize, gameSpeed);
+};
