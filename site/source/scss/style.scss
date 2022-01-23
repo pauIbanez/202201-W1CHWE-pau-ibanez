@@ -260,6 +260,47 @@ li {
         }
         &--slider {
           width: 250px;
+          display: flex;
+          align-items: center;
+          background-color: transparent;
+          border-width: 0;
+
+          &:hover {
+            background-color: transparent;
+          }
+
+          .slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%; /* Full-width */
+            height: 10px; /* Specified height */
+            background: var(--seccondary-color); /* Grey background */
+            outline: none; /* Remove outline */
+            opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+            -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+            transition: opacity 0.2s;
+
+            &:hover {
+              opacity: 1;
+            }
+
+            &::-webkit-slider-thumb {
+              -webkit-appearance: none; /* Override default look */
+              appearance: none;
+              width: 25px; /* Set a specific slider handle width */
+              height: 25px; /* Slider handle height */
+              border-radius: 50%;
+              background: var(--primary-color); /* Green background */
+              cursor: pointer; /* Cursor on hover */
+            }
+
+            &::-moz-range-thumb {
+              width: 25px; /* Set a specific slider handle width */
+              height: 25px; /* Slider handle height */
+              background: #04aa6d; /* Green background */
+              cursor: pointer; /* Cursor on hover */
+            }
+          }
         }
       }
     }

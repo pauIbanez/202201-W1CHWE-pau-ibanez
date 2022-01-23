@@ -92,13 +92,16 @@
             </button>
           </li>
           <li>
-            <!-- Button as placeholder -->
-            <button
-              id="slider"
-              class="game-controls__button game-controls__button--slider"
-            >
-              Slider speed
-            </button>
+            <div class="game-controls__button game-controls__button--slider">
+              <input
+                type="range"
+                min="100"
+                max="1000"
+                value="300"
+                class="slider"
+                id="slider"
+              />
+            </div>
           </li>
         </ul>
       </section>
