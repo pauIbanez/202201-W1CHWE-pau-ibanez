@@ -14,7 +14,7 @@
       <canvas id="cell-canvas" class="canvas canvas--cells"></canvas>
     </section>
 
-    <main id="main-ui" class="main-ui">
+    <main id="main-ui" class="main-ui hide">
       <header class="main-ui__presentation">
         <h1 class="main-ui__info-title">Game of Life</h1>
         <div class="main-ui__info-section">
@@ -33,7 +33,7 @@
         </div>
       </header>
       <section class="main-ui__controlls">
-        <h2 class="section-info section-info--hidden">Main controlls</h2>
+        <h2 class="section-info hide">Main controlls</h2>
         <button id="play-button" class="main-ui__controlls__play-button">
           Play
         </button>
@@ -57,7 +57,8 @@
       </footer>
     </main>
 
-    <section id="game-menu" class="game-menu hide">
+    <section id="game-menu" class="game-menu">
+      <!--add class hide -->
       <section id="game-info" class="game-menu__info">
         <h2 class="section-info">Game Info</h2>
         <ul class="game-menu__info-holder">

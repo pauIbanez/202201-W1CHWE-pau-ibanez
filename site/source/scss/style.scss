@@ -18,6 +18,13 @@ html {
   font-family: "bahnschrift", "sans-serif";
 }
 
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .main-ui {
   position: fixed;
   top: 0;
@@ -155,7 +162,13 @@ html {
 .game-menu {
   position: fixed;
   top: 0;
+  bottom: 30px;
   right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  pointer-events: none;
 
   &__info {
     position: fixed;
@@ -171,13 +184,7 @@ html {
     color: var(--seccondary-color);
     transition: all ease-in-out 0.5s;
     transform: translateX(280px);
-
-    ul,
-    li {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
+    pointer-events: visible;
 
     .section-info {
       font-family: "Bauhaus 93", "sans-serif";
@@ -203,6 +210,14 @@ html {
         font-size: 20px;
       }
     }
+  }
+
+  &__controls {
+    width: 900px;
+    height: 50px;
+    background-color: #dedede;
+    border-radius: 50px;
+    pointer-events: visible;
   }
 }
 
