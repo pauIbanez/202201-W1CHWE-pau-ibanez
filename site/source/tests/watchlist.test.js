@@ -41,8 +41,8 @@ describe("Given watchlistGenerator", () => {
       expect(result.length).toBe(expectedLenght);
     });
   });
-  describe("When inputed [{x:10, y:10}, {x:30, y:30}], 20", () => {
-    test("Then it should return 17 watchlists", () => {
+  describe("When inputed [{ x: 20, y: 20 }], 20", () => {
+    test("Then it should return cell number 4 as alive", () => {
       const cellsToGive = [{ x: 20, y: 20 }];
       const cellSize = 20;
       const expectedCellToBeAlive = 4;
@@ -50,10 +50,8 @@ describe("Given watchlistGenerator", () => {
       const result = watchlistGenerator(cellsToGive, cellSize);
       expect(result[expectedCellToBeAlive].alive).toBe(true);
     });
-  });
 
-  describe("When inputed [{x:10, y:10}, {x:30, y:30}], 20", () => {
-    test("Then it should return 17 watchlists", () => {
+    test("Then it should return cell number 8 as dead", () => {
       const cellsToGive = [{ x: 20, y: 20 }];
       const cellSize = 20;
       const expectedCellToBeDead = 8;
@@ -65,12 +63,29 @@ describe("Given watchlistGenerator", () => {
 });
 
 describe("Given WatchList getLiveNeighbours", () => {
-  describe("When inputing {x: 20, y:20} with different watched cells", () => {
+  describe("When inputing [{x: 20, y:20}]", () => {
     test("Then it should return 0", () => {
       const cellsToGive = [{ x: 20, y: 20 }];
       const cellOrigin = { x: 20, y: 20 };
       const cellSize = 20;
       const expectedResult = 0;
+      const inicializedWatchList = new Watchlist(cellOrigin, cellSize, true);
+
+      const result = inicializedWatchList.getLiveNeighbours(cellsToGive);
+
+      expect(result).toBe(expectedResult);
+    });
+  });
+
+  describe("When inputing [{x: 20, y:20},{ x: 40, y: 40 }]", () => {
+    test("Then it should return 1", () => {
+      const cellsToGive = [
+        { x: 20, y: 20 },
+        { x: 40, y: 40 },
+      ];
+      const cellOrigin = { x: 20, y: 20 };
+      const cellSize = 20;
+      const expectedResult = 1;
       const inicializedWatchList = new Watchlist(cellOrigin, cellSize, true);
 
       const result = inicializedWatchList.getLiveNeighbours(cellsToGive);
