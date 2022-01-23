@@ -11,6 +11,8 @@ demoCellCanvas.height = 2000;
 demoCellCanvas.width = 2000;
 const demoCellCtx = demoCellCanvas.getContext("2d");
 
+const playButton = document.getElementById("play-button");
+
 const cellSize = 20;
 
 const demoId = startDemo(
@@ -20,3 +22,5 @@ const demoId = startDemo(
   demoCellCtx,
   cellSize
 );
+
+playButton.addEventListener("click", () => {});
