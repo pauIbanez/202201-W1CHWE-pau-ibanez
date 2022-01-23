@@ -18,6 +18,9 @@ const mainUI = document.getElementById("main-ui");
 let paused = false;
 const cellSize = 20;
 const currentPlayAction = 1;
+let prevMousePos;
+const mouseDown = false;
+const moving = false;
 
 const demoId = startDemo(gridCanvas, gridCtx, cellCanvas, cellCtx, cellSize);
 
