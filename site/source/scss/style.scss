@@ -25,6 +25,7 @@ html {
   display: flex;
   padding: 80px;
   width: 40%;
+  max-width: 900px;
   height: 100%;
   background-color: #dedede;
   flex-direction: column;
@@ -116,7 +117,7 @@ html {
   }
 }
 
-.demo-game {
+.game {
   position: fixed;
   top: 0;
   left: 0;
@@ -124,28 +125,37 @@ html {
   width: 2000px;
   pointer-events: none;
   background-color: #383838;
+  pointer-events: visible;
 
-  &____canvas {
+  .canvas {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100%;
-    width: 100%;
+    height: 2000px;
+    width: 2000px;
+
+    &--grid {
+      background-color: #383838;
+    }
+
+    &--cells {
+      pointer-events: none;
+    }
   }
 }
 
-.canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2000px;
-  width: 2000px;
+.start-hide {
+  animation: start-hide 1s ease-in-out forwards;
+}
 
-  &--grid {
-    background-color: #383838;
+@keyframes start-hide {
+  0% {
+    transform: translateX(0);
   }
 
-  &--cells {
+  100% {
+    transform: translateX(900px);
+    display: none;
     pointer-events: none;
   }
 }

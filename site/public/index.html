@@ -9,11 +9,12 @@
     <title>ADD FAVICON YOU LAZY SHIT</title>
   </head>
   <body>
-    <section class="demo-game">
-      <canvas id="demo-grid-canvas" class="canvas canvas--grid"></canvas>
-      <canvas id="demo-cell-canvas" class="canvas canvas--cells"></canvas>
+    <section class="game">
+      <canvas id="grid-canvas" class="canvas canvas--grid"></canvas>
+      <canvas id="cell-canvas" class="canvas canvas--cells"></canvas>
     </section>
-    <main class="main-ui">
+
+    <main id="main-ui" class="main-ui">
       <header class="main-ui__presentation">
         <h1 class="main-ui__info-title">Game of Life</h1>
         <div class="main-ui__info-section">
@@ -32,23 +33,29 @@
         </div>
       </header>
       <section class="main-ui__controlls">
-        <button class="main-ui__controlls__play-button">Play</button>
-        <button class="main-ui__controlls__template-button">
+        <button id="play-button" class="main-ui__controlls__play-button">
+          Play
+        </button>
+        <button
+          id="template-button"
+          class="main-ui__controlls__template-button"
+        >
           Choose a template
         </button>
         <button class="main-ui__controlls__empty-canvas-button">
           Empty canvas
         </button>
       </section>
+      <footer class="sources">
+        Information from Wikipedia.
+        <a
+          href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
+          class="sources__more-info"
+          >see more</a
+        >
+      </footer>
     </main>
-    <footer class="sources">
-      Information from Wikipedia.
-      <a
-        href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
-        class="sources__more-info"
-        >see more</a
-      >
-    </footer>
+
     <!-- <canvas id="grid" class="canvas canvas--grid"></canvas>
     <canvas id="canvas" class="canvas canvas--cells"></canvas> -->
   </body>
