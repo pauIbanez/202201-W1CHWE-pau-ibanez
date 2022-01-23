@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import { watchlistGenerator } from "./watchlist.js";
 import { runNextGen } from "./gameRunner.js";
+import { drawDemoGrid } from "./drawGrid.js";
 
 const demoGridCanvas = document.getElementById("demo-grid-canvas");
 demoGridCanvas.height = 2000;
@@ -72,23 +73,6 @@ let demoCellPositions = [
   { x: 140, y: 720 },
 ];
 let demoCells = [];
-
-const drawDemoGrid = (gap, ctx, canvas) => {
-  ctx.lineWidth = 1;
-  ctx.strokeStyle = "gray";
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.beginPath();
-
-  for (let x = 0; x < canvas.width; x += gap) {
-    ctx.moveTo(x, 0);
-    ctx.lineTo(x, canvas.height);
-  }
-  for (let y = 0; y < canvas.height; y += gap) {
-    ctx.moveTo(0, y);
-    ctx.lineTo(canvas.width, y);
-  }
-  ctx.stroke();
-};
 
 drawDemoGrid(cellSize, demoGridCtx, demoGridCanvas);
 
