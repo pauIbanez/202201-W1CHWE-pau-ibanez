@@ -126,6 +126,9 @@ html {
   background-color: #383838;
 
   &____canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
     height: 100%;
     width: 100%;
   }
@@ -139,7 +142,7 @@ html {
   width: 2000px;
 
   &--grid {
-    background-color: #1d1d1d;
+    background-color: #383838;
   }
 
   &--cells {

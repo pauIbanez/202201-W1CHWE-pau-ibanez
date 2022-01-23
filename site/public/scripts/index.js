@@ -1,0 +1,108 @@
+/* eslint-disable import/extensions */
+import { watchlistGenerator } from "./watchlist.js";
+import { runNextGen } from "./gameRunner.js";
+
+const demoGridCanvas = document.getElementById("demo-grid-canvas");
+demoGridCanvas.height = 1700;
+demoGridCanvas.width = 1700;
+const demoGridCtx = demoGridCanvas.getContext("2d");
+
+const demoCellCanvas = document.getElementById("demo-cell-canvas");
+demoCellCanvas.height = 1700;
+demoCellCanvas.width = 1700;
+const demoCellCtx = demoCellCanvas.getContext("2d");
+
+const cellSize = 20;
+const demoSpeed = 500;
+let demoCellPositions = [
+  { x: 180, y: 120 },
+  { x: 180, y: 140 },
+  { x: 180, y: 160 },
+  { x: 660, y: 100 },
+  { x: 660, y: 120 },
+  { x: 680, y: 120 },
+  { x: 680, y: 100 },
+  { x: 100, y: 360 },
+  { x: 100, y: 380 },
+  { x: 120, y: 380 },
+  { x: 120, y: 360 },
+  { x: 300, y: 360 },
+  { x: 300, y: 380 },
+  { x: 300, y: 400 },
+  { x: 320, y: 420 },
+  { x: 340, y: 440 },
+  { x: 360, y: 440 },
+  { x: 320, y: 340 },
+  { x: 340, y: 320 },
+  { x: 360, y: 320 },
+  { x: 400, y: 340 },
+  { x: 420, y: 360 },
+  { x: 420, y: 380 },
+  { x: 420, y: 400 },
+  { x: 440, y: 380 },
+  { x: 380, y: 380 },
+  { x: 400, y: 420 },
+  { x: 500, y: 360 },
+  { x: 500, y: 340 },
+  { x: 500, y: 320 },
+  { x: 520, y: 320 },
+  { x: 520, y: 340 },
+  { x: 520, y: 360 },
+  { x: 540, y: 300 },
+  { x: 540, y: 380 },
+  { x: 580, y: 300 },
+  { x: 580, y: 280 },
+  { x: 580, y: 380 },
+  { x: 580, y: 400 },
+  { x: 780, y: 320 },
+  { x: 780, y: 340 },
+  { x: 800, y: 340 },
+  { x: 800, y: 320 },
+  { x: 220, y: 640 },
+  { x: 220, y: 660 },
+  { x: 220, y: 680 },
+  { x: 220, y: 760 },
+  { x: 220, y: 780 },
+  { x: 220, y: 800 },
+  { x: 260, y: 720 },
+  { x: 280, y: 720 },
+  { x: 300, y: 720 },
+  { x: 180, y: 720 },
+  { x: 160, y: 720 },
+  { x: 140, y: 720 },
+];
+let demoCells = [];
+
+const drawDemoGrid = (gap, ctx, canvas) => {
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = "gray";
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.beginPath();
+
+  for (let x = 0; x < canvas.width; x += gap) {
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, canvas.height);
+  }
+  for (let y = 0; y < canvas.height; y += gap) {
+    ctx.moveTo(0, y);
+    ctx.lineTo(canvas.width, y);
+  }
+  ctx.stroke();
+};
+
+drawDemoGrid(cellSize, demoGridCtx, demoGridCanvas);
+
+const runDemo = (speed) => {
+  const intervalId = setInterval(() => {
+    demoCells = watchlistGenerator(demoCellPositions, cellSize);
+    demoCellPositions = runNextGen(
+      demoCells,
+      demoCellPositions,
+      demoCellCtx,
+      demoCellCanvas
+    );
+  }, speed);
+  return intervalId;
+};
+
+runDemo(demoSpeed);
