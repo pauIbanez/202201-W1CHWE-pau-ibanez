@@ -148,6 +148,36 @@ html {
   animation: start-hide 1s ease-in-out forwards;
 }
 
+.game-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  &__info {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    padding: 20px;
+    width: 300px;
+    height: 100%;
+    background-color: yellow;
+    z-index: 2;
+    flex-direction: column;
+    color: var(--seccondary-color);
+    ul,
+    li {
+      list-style: none;
+    }
+
+    .section-info {
+      font-family: "Bauhaus 93", "sans-serif";
+      color: var(--primary-color);
+      letter-spacing: 1px;
+    }
+  }
+}
+
 @keyframes start-hide {
   0% {
     transform: translateX(0);
