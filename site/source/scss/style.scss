@@ -273,10 +273,12 @@ li {
           display: flex;
           align-items: center;
           background-color: transparent;
+          gap: 10px;
           border-width: 0;
 
           &:hover {
             background-color: transparent;
+            color: inherit;
           }
 
           .slider {
