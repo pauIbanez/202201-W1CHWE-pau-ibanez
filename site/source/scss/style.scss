@@ -218,6 +218,29 @@ li {
     background-color: #dedede;
     border-radius: 50px;
     pointer-events: visible;
+    ul {
+      width: 100%;
+      height: 100%;
+      padding-left: 100px;
+      padding-right: 100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .game-controls__button {
+        color: white;
+        border: none;
+        &--main {
+          height: 40px;
+          background-color: var(--primary-color);
+          border-radius: 40px;
+          width: 200px;
+          font-weight: 600;
+          font-size: 30px;
+          font-family: "bahnschrift", "sans-serif";
+        }
+      }
+    }
   }
 }
 
