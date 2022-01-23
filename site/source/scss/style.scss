@@ -155,6 +155,14 @@ li {
   animation: start-hide 1s ease-in-out forwards;
 }
 
+.info-start {
+  animation: info-start 1s ease-in-out forwards;
+}
+
+.game-start {
+  animation: game-start 1s ease-in-out forwards;
+}
+
 .hide {
   display: none !important;
 }
@@ -238,6 +246,7 @@ li {
         flex: 1;
         transition: all ease-in-out 0.2s;
         cursor: pointer;
+        color: #383838;
 
         &:hover {
           background-color: var(--primary-color);
@@ -272,12 +281,12 @@ li {
           .slider {
             -webkit-appearance: none;
             appearance: none;
-            width: 100%; /* Full-width */
-            height: 10px; /* Specified height */
-            background: var(--seccondary-color); /* Grey background */
-            outline: none; /* Remove outline */
-            opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-            -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+            width: 100%;
+            height: 10px;
+            background-color: #383838;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: 0.2s;
             transition: opacity 0.2s;
 
             &:hover {
@@ -285,20 +294,21 @@ li {
             }
 
             &::-webkit-slider-thumb {
-              -webkit-appearance: none; /* Override default look */
+              -webkit-appearance: none;
               appearance: none;
-              width: 25px; /* Set a specific slider handle width */
-              height: 25px; /* Slider handle height */
+              width: 25px;
+              height: 25px;
               border-radius: 50%;
-              background: var(--primary-color); /* Green background */
-              cursor: pointer; /* Cursor on hover */
+              background: var(--primary-color);
+              cursor: pointer;
             }
 
             &::-moz-range-thumb {
-              width: 25px; /* Set a specific slider handle width */
-              height: 25px; /* Slider handle height */
-              background: #04aa6d; /* Green background */
-              cursor: pointer; /* Cursor on hover */
+              width: 25px;
+              height: 25px;
+              border-radius: 50%;
+              background: var(--primary-color);
+              cursor: pointer;
             }
           }
         }
@@ -316,6 +326,26 @@ li {
     transform: translateX(900px);
     display: none;
     pointer-events: none;
+  }
+}
+
+@keyframes info-start {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(250px);
+  }
+}
+
+@keyframes info-start {
+  0% {
+    transform: translateY(100px);
+  }
+
+  100% {
+    transform: translateY(0);
   }
 }
 
