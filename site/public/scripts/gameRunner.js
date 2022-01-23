@@ -6,9 +6,13 @@ import { cellPositions, updateCellPositions } from "./canvasMover.js";
 
 let genCellPositions = [];
 
-const clearCanvas = () => {
-  genCellPositions = [];
-};
+let generationCounter = 0;
+let currentLivingCells = 0;
+let totalCells = 0;
+
+const generationCounterText = document.getElementById("generationCounter");
+const currentCellsCounterText = document.getElementById("currentCellsCounter");
+const totalCellsCounterText = document.getElementById("totalCellsCounter");
 
 const runNextGen = (cells, cellsPositions, ctx, canvas) => {
   const { cellSize } = cells[0];
@@ -26,6 +30,12 @@ const stopGame = (gameId) => {
   clearInterval(gameId);
 };
 
+const updateCounters = () => {
+  generationCounterText.innerText = generationCounter;
+  currentCellsCounterText.innerText = currentLivingCells;
+  totalCellsCounterText.innerText = totalCells;
+};
+
 const runGame = (ctx, canvas, cellSize, speed) => {
   let newCells = [];
   genCellPositions = cellPositions;
@@ -36,9 +46,22 @@ const runGame = (ctx, canvas, cellSize, speed) => {
     newCells = watchlistGenerator(genCellPositions, cellSize);
     genCellPositions = runNextGen(newCells, genCellPositions, ctx, canvas);
     updateCellPositions(genCellPositions);
+    updateCounters();
+
+    generationCounter += 1;
+    currentLivingCells = genCellPositions.length;
+    totalCells += currentLivingCells;
   }, speed);
 
   return intervalId;
+};
+
+const clearCanvas = () => {
+  genCellPositions = [];
+  generationCounter = 0;
+  currentLivingCells = 0;
+  totalCells = 0;
+  updateCounters();
 };
 
 export default runGame;
