@@ -1,2 +1,4 @@
 node_modules
 coverage
+site/public/css/
+site/source/reference
