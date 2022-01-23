@@ -26,16 +26,7 @@ const reset = (gridCtx, gridCanvas, cellCtx, cellCanvas, cellSize) => {
   );
 };
 
-const setMouseAction = (
-  state,
-  action,
-  event,
-  gridCtx,
-  gridCanvas,
-  cellCtx,
-  cellCanvas,
-  cellSize
-) => {
+const setMouseAction = (state, action, event, canvasesArray, cellSize) => {
   mouseDown = state;
   switch (action) {
     case 1:
@@ -43,7 +34,7 @@ const setMouseAction = (
         prevMousePos = getMousePos(event);
       } else {
         // eslint-disable-next-line no-param-reassign
-        gridCanvas.style.cursor = "pointer";
+        canvasesArray[1].style.cursor = "pointer";
 
         if (!moving) {
           const clientInstanciatedCell = getGridAlignedCoords(
@@ -62,19 +53,32 @@ const setMouseAction = (
 
           if (dupped === -1) {
             cellPositions.push(
-              drawCell(cellCtx, clientInstanciatedCell, cellSize)
+              drawCell(canvasesArray[2], clientInstanciatedCell, cellSize)
             );
           } else {
             cellPositions.splice(dupped, 1);
           }
         }
 
-        reset(gridCtx, gridCanvas, cellCtx, cellCanvas, cellSize);
+        reset(
+          canvasesArray[0],
+          canvasesArray[1],
+          canvasesArray[2],
+          canvasesArray[3],
+          cellSize
+        );
       }
       break;
 
     case 2:
-      if (moving) reset(gridCtx, gridCanvas, cellCtx, cellCanvas, cellSize);
+      if (moving)
+        reset(
+          canvasesArray[0],
+          canvasesArray[1],
+          canvasesArray[2],
+          canvasesArray[3],
+          cellSize
+        );
       break;
 
     default:
