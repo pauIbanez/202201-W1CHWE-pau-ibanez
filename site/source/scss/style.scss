@@ -25,6 +25,7 @@ html {
   display: flex;
   padding: 80px;
   width: 40%;
+  max-width: 900px;
   height: 100%;
   background-color: #dedede;
   flex-direction: column;
@@ -139,6 +140,21 @@ html {
     &--cells {
       pointer-events: none;
     }
+  }
+}
+
+.start-hide {
+  animation: start-hide 1s ease-in-out forwards;
+}
+
+@keyframes start-hide {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(900px);
+    display: none;
   }
 }
 
