@@ -3,7 +3,6 @@ import { calculateNextGen } from "./gameStateCalculator.js";
 import { drawCell } from "./cellRendering.js";
 import { watchlistGenerator } from "./watchlist.js";
 import { cellPositions, updateCellPositions } from "./canvasMover.js";
-import { gameEnded } from "./index.js";
 
 let genCellPositions = [];
 
@@ -32,8 +31,9 @@ const runGame = (ctx, canvas, cellSize, speed) => {
   genCellPositions = cellPositions;
   const intervalId = setInterval(() => {
     if (genCellPositions.length === 0) {
-      stopGame(intervalId);
-      gameEnded();
+      // stopGame(intervalId);
+      // const mainGameButton = document.getElementById("main-button");
+      // mainGameButton.innerText = "Start";
       return;
     }
     newCells = watchlistGenerator(genCellPositions, cellSize);

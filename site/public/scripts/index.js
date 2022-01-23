@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
 import { startDemo, stopDemo } from "./demoRunner.js";
 import { setMouseAction, mouseMoving, cellPositions } from "./canvasMover.js";
