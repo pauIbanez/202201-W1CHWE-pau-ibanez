@@ -7,6 +7,7 @@ let prevMousePos;
 let mouseDown = false;
 let moving = false;
 
+// eslint-disable-next-line import/no-mutable-exports
 let cellPositions = [];
 
 const getMousePos = (event) => ({
@@ -20,11 +21,9 @@ const reset = (gridCtx, gridCanvas, cellCtx, cellCanvas, cellSize) => {
   drawGrid(gridCanvas, gridCtx, cellSize);
   cellCtx.clearRect(0, 0, cellCanvas.width, cellCanvas.height);
 
-  const newCellPositions = cellPositions.map((cell) =>
+  cellPositions = cellPositions.map((cell) =>
     drawCell(cellCtx, getGridAlignedCoords(cell, cellSize), cellSize)
   );
-
-  return newCellPositions;
 };
 
 const setMouseAction = (
@@ -35,7 +34,6 @@ const setMouseAction = (
   gridCanvas,
   cellCtx,
   cellCanvas,
-  paused,
   cellSize
 ) => {
   mouseDown = state;
@@ -47,7 +45,7 @@ const setMouseAction = (
         // eslint-disable-next-line no-param-reassign
         gridCanvas.style.cursor = "pointer";
 
-        if (!moving && paused) {
+        if (!moving) {
           const clientInstanciatedCell = getGridAlignedCoords(
             {
               x: event.clientX,
@@ -124,5 +122,9 @@ const mouseMoving = (
   cellPositions = movedCells;
 };
 
+const updateCellPositions = (newCellPositions) => {
+  cellPositions = newCellPositions;
+};
+
 export default setMouseAction;
-export { setMouseAction, mouseMoving };
+export { setMouseAction, mouseMoving, cellPositions, updateCellPositions };

@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
-import { runGame } from "./gameRunner.js";
+import { watchlistGenerator } from "./watchlist.js";
+import { runNextGen } from "./gameRunner.js";
 import { drawDemoGrid } from "./drawGrid.js";
 
 const demoSpeed = 100;
@@ -62,9 +63,22 @@ const demoCellPositions = [
   { x: 140, y: 720 },
 ];
 
+let genCellPositions = [];
+
 const stopDemo = (demoId, ctx, canvas) => {
   clearInterval(demoId);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+};
+
+const runDemo = (ctx, canvas, cellSize, speed) => {
+  let newCells = [];
+  genCellPositions = demoCellPositions;
+  const intervalId = setInterval(() => {
+    newCells = watchlistGenerator(genCellPositions, cellSize);
+    genCellPositions = runNextGen(newCells, genCellPositions, ctx, canvas);
+  }, speed);
+
+  return intervalId;
 };
 
 const startDemo = (
@@ -76,10 +90,9 @@ const startDemo = (
 ) => {
   drawDemoGrid(cellSize, demoGridCtx, demoGridCanvas);
 
-  const demoIntervalId = runGame(
+  const demoIntervalId = runDemo(
     demoCellCtx,
     demoCellCanvas,
-    demoCellPositions,
     cellSize,
     demoSpeed
   );

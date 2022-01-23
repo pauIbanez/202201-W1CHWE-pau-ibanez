@@ -236,6 +236,8 @@ li {
         font-weight: 600;
         font-size: 15px;
         flex: 1;
+        transition: all ease-in-out 0.5s;
+        cursor: pointer;
 
         &--main {
           color: white;
@@ -244,8 +246,12 @@ li {
           border-radius: 40px;
           width: 200px;
           flex: 2;
-
           font-size: 30px;
+
+          &:hover {
+            background-color: white;
+            color: var(--primary-color);
+          }
         }
         &--slider {
           width: 250px;
