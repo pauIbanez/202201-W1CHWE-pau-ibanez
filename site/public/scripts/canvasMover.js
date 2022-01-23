@@ -65,7 +65,6 @@ const setMouseAction = (
               drawCell(cellCtx, clientInstanciatedCell, cellSize)
             );
           } else {
-            console.log(dupped);
             cellPositions.splice(dupped, 1);
           }
         }
