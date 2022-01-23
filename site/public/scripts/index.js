@@ -2,17 +2,6 @@
 import { runGame } from "./gameRunner.js";
 import { drawDemoGrid } from "./drawGrid.js";
 
-const demoGridCanvas = document.getElementById("demo-grid-canvas");
-demoGridCanvas.height = 2000;
-demoGridCanvas.width = 2000;
-const demoGridCtx = demoGridCanvas.getContext("2d");
-
-const demoCellCanvas = document.getElementById("demo-cell-canvas");
-demoCellCanvas.height = 2000;
-demoCellCanvas.width = 2000;
-const demoCellCtx = demoCellCanvas.getContext("2d");
-
-const cellSize = 20;
 const demoSpeed = 100;
 
 const demoCellPositions = [
@@ -73,13 +62,24 @@ const demoCellPositions = [
   { x: 140, y: 720 },
 ];
 
-drawDemoGrid(cellSize, demoGridCtx, demoGridCanvas);
-
-// eslint-disable-next-line no-unused-vars
-const demoIntervalId = runGame(
-  demoCellCtx,
+const startDemo = (
+  demoGridCanvas,
+  demoGridCtx,
   demoCellCanvas,
-  demoCellPositions,
-  cellSize,
-  demoSpeed
-);
+  demoCellCtx,
+  cellSize
+) => {
+  drawDemoGrid(cellSize, demoGridCtx, demoGridCanvas);
+
+  const demoIntervalId = runGame(
+    demoCellCtx,
+    demoCellCanvas,
+    demoCellPositions,
+    cellSize,
+    demoSpeed
+  );
+  return demoIntervalId;
+};
+
+export default startDemo;
+export { startDemo };
