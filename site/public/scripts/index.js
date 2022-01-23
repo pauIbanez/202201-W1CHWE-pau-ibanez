@@ -68,10 +68,7 @@ gridCanvas.addEventListener("mouseup", (event) => {
     false,
     1,
     event,
-    gridCtx,
-    gridCanvas,
-    cellCtx,
-    cellCanvas,
+    [gridCtx, gridCanvas, cellCtx, cellCanvas],
     cellSize
   );
 });
@@ -83,7 +80,10 @@ gridCanvas.addEventListener("mouseleave", () => {
 gridCanvas.addEventListener("mousemove", (event) => {
   mouseMoving(
     event,
-    [gridCtx, gridCanvas, cellCtx, cellCanvas],
+    gridCtx,
+    gridCanvas,
+    cellCtx,
+    cellCanvas,
     cellSize,
     paused
   );
