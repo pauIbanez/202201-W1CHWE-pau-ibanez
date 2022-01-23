@@ -18,6 +18,13 @@ html {
   font-family: "bahnschrift", "sans-serif";
 }
 
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .main-ui {
   position: fixed;
   top: 0;
@@ -146,6 +153,106 @@ html {
 
 .start-hide {
   animation: start-hide 1s ease-in-out forwards;
+}
+
+.hide {
+  display: none !important;
+}
+
+.game-menu {
+  position: fixed;
+  top: 0;
+  bottom: 30px;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  pointer-events: none;
+
+  &__info {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    padding: 30px;
+    width: 300px;
+    height: 100%;
+    background-color: #dedede;
+    z-index: 2;
+    flex-direction: column;
+    color: var(--seccondary-color);
+    transition: all ease-in-out 0.5s;
+    transform: translateX(270px);
+    pointer-events: visible;
+
+    .section-info {
+      font-family: "Bauhaus 93", "sans-serif";
+      color: var(--primary-color);
+      letter-spacing: 1px;
+    }
+
+    &:hover {
+      transform: translateX(0);
+    }
+  }
+
+  &__info-holder {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .info-slot {
+      display: flex;
+      justify-content: space-between;
+      .info-slot-info {
+        color: var(--primary-color);
+        font-size: 20px;
+      }
+    }
+  }
+
+  &__controls {
+    width: 900px;
+    height: 50px;
+    background-color: #dedede;
+    border-radius: 50px;
+    pointer-events: visible;
+    ul {
+      width: 100%;
+      height: 100%;
+      padding-left: 50px;
+      padding-right: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .game-controls__button {
+        border: 2px solid var(--primary-color);
+        background-color: white;
+        height: 30px;
+        width: 100px;
+        font-family: "bahnschrift", "sans-serif";
+        font-weight: 600;
+        font-size: 15px;
+        flex: 1;
+
+        &--main {
+          color: white;
+          height: 40px;
+          background-color: var(--primary-color);
+          border-radius: 40px;
+          width: 200px;
+          flex: 2;
+
+          font-size: 30px;
+        }
+        &--slider {
+          width: 250px;
+        }
+      }
+    }
+  }
 }
 
 @keyframes start-hide {
