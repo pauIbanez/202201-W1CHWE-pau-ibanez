@@ -54,16 +54,19 @@ const setMouseAction = (
             cellSize
           );
 
-          const dupped = cellPositions.some(
+          const dupped = cellPositions.findIndex(
             (cell) =>
               cell.x === clientInstanciatedCell.x &&
               cell.y === clientInstanciatedCell.y
           );
 
-          if (!dupped) {
+          if (dupped === -1) {
             cellPositions.push(
               drawCell(cellCtx, clientInstanciatedCell, cellSize)
             );
+          } else {
+            console.log(dupped);
+            cellPositions.splice(dupped, 1);
           }
         }
 
