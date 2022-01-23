@@ -7,6 +7,7 @@ let prevMousePos;
 let mouseDown = false;
 let moving = false;
 
+// eslint-disable-next-line import/no-mutable-exports
 let cellPositions = [];
 
 const getMousePos = (event) => ({
