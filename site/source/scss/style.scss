@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary-color: #d15e56;
+  --seccondary-color: #2c2c2c;
+}
+
 body,
 html {
   margin: 0;
@@ -23,9 +28,19 @@ html {
   height: 100%;
   background-color: #dedede;
   flex-direction: column;
+  color: var(--seccondary-color);
 
-  h1 {
+  &__info-title {
     font-family: "Bauhaus 93", "sans-serif";
+    color: var(--primary-color);
+    letter-spacing: 1px;
+    font-size: 40px;
+  }
+
+  &__info-section {
+    font-weight: 600;
+    text-align: justify;
+    padding-right: 100px;
   }
 }
 
