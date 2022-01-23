@@ -13,7 +13,7 @@ demoCellCanvas.width = 2000;
 const demoCellCtx = demoCellCanvas.getContext("2d");
 
 const cellSize = 20;
-const demoSpeed = 500;
+const demoSpeed = 100;
 let demoCellPositions = [
   { x: 180, y: 120 },
   { x: 180, y: 140 },
