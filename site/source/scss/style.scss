@@ -148,6 +148,10 @@ html {
   animation: start-hide 1s ease-in-out forwards;
 }
 
+.hide {
+  display: none;
+}
+
 .game-menu {
   position: fixed;
   top: 0;
