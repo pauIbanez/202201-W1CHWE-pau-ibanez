@@ -79,4 +79,4 @@ const watchlistGenerator = (cells, cellSize) => {
 };
 
 export default watchlistGenerator;
-export { watchlistGenerator };
+export { watchlistGenerator, Watchlist };
