@@ -9,6 +9,34 @@ html {
   overflow: hidden;
 }
 
+.main-ui {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  padding-left: 20px;
+  width: 900px;
+  height: 100%;
+  background-color: #dedede;
+}
+
+.sources {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 30px;
+}
+
+.demo-game {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 1700px;
+  width: 1700px;
+  pointer-events: none;
+  background-color: #383838;
+}
+
 .canvas {
   position: fixed;
   top: 0;
