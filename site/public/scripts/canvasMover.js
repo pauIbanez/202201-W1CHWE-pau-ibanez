@@ -86,9 +86,14 @@ const mouseMoving = (
   gridCanvas,
   cellCtx,
   cellCanvas,
-  cellSize
+  cellSize,
+  paused
 ) => {
   if (!mouseDown) return;
+  if (!paused) {
+    console.log("Don't have time to fix bug, so if you want to move, pause!");
+    return;
+  }
   moving = true;
   // eslint-disable-next-line no-param-reassign
   gridCanvas.style.cursor = "grabbing";

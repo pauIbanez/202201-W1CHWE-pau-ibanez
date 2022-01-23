@@ -22,20 +22,26 @@ const runNextGen = (cells, cellsPositions, ctx, canvas) => {
   return nextGenCells;
 };
 
+const stopGame = (gameId) => {
+  clearInterval(gameId);
+};
+
 const runGame = (ctx, canvas, cellSize, speed) => {
   let newCells = [];
   genCellPositions = cellPositions;
   const intervalId = setInterval(() => {
+    if (genCellPositions.length === 0) {
+      // stopGame(intervalId);
+      // const mainGameButton = document.getElementById("main-button");
+      // mainGameButton.innerText = "Start";
+      return;
+    }
     newCells = watchlistGenerator(genCellPositions, cellSize);
     genCellPositions = runNextGen(newCells, genCellPositions, ctx, canvas);
     updateCellPositions(genCellPositions);
   }, speed);
 
   return intervalId;
-};
-
-const stopGame = (gameId) => {
-  clearInterval(gameId);
 };
 
 export default runGame;

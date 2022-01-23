@@ -70,7 +70,15 @@ gridCanvas.addEventListener("mouseleave", () => {
 });
 
 gridCanvas.addEventListener("mousemove", (event) => {
-  mouseMoving(event, gridCtx, gridCanvas, cellCtx, cellCanvas, cellSize);
+  mouseMoving(
+    event,
+    gridCtx,
+    gridCanvas,
+    cellCtx,
+    cellCanvas,
+    cellSize,
+    paused
+  );
 });
 
 mainGameButton.addEventListener("click", () => {
@@ -85,3 +93,11 @@ mainGameButton.addEventListener("click", () => {
     mainGameButton.innerText = "Start";
   }
 });
+
+const gameEnded = () => {
+  paused = true;
+  mainGameButton.innerText = "Start";
+};
+
+export default gameEnded;
+export { gameEnded };
