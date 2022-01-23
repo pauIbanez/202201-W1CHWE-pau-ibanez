@@ -221,23 +221,34 @@ li {
     ul {
       width: 100%;
       height: 100%;
-      padding-left: 100px;
-      padding-right: 100px;
+      padding-left: 50px;
+      padding-right: 50px;
       display: flex;
       justify-content: space-between;
       align-items: center;
 
       .game-controls__button {
-        color: white;
-        border: none;
+        border: 2px solid var(--primary-color);
+        background-color: white;
+        height: 30px;
+        width: 100px;
+        font-family: "bahnschrift", "sans-serif";
+        font-weight: 600;
+        font-size: 15px;
+        flex: 1;
+
         &--main {
+          color: white;
           height: 40px;
           background-color: var(--primary-color);
           border-radius: 40px;
           width: 200px;
-          font-weight: 600;
+          flex: 2;
+
           font-size: 30px;
-          font-family: "bahnschrift", "sans-serif";
+        }
+        &--slider {
+          width: 250px;
         }
       }
     }
