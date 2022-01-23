@@ -13,4 +13,10 @@ const demoCellCtx = demoCellCanvas.getContext("2d");
 
 const cellSize = 20;
 
-startDemo(demoGridCanvas, demoGridCtx, demoCellCanvas, demoCellCtx, cellSize);
+const demoId = startDemo(
+  demoGridCanvas,
+  demoGridCtx,
+  demoCellCanvas,
+  demoCellCtx,
+  cellSize
+);

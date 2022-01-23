@@ -62,6 +62,10 @@ const demoCellPositions = [
   { x: 140, y: 720 },
 ];
 
+const stopDemo = (demoId) => {
+  clearInterval(demoId);
+};
+
 const startDemo = (
   demoGridCanvas,
   demoGridCtx,
@@ -82,4 +86,4 @@ const startDemo = (
 };
 
 export default startDemo;
-export { startDemo };
+export { startDemo, stopDemo };
