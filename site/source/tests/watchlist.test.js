@@ -1,4 +1,4 @@
-import { watchlistGenerator } from "../../public/scripts/watchlist";
+import { Watchlist, watchlistGenerator } from "../../public/scripts/watchlist";
 
 describe("Given watchlistGenerator", () => {
   describe("When inputed [{x:10, y:10}], 20", () => {
@@ -60,6 +60,22 @@ describe("Given watchlistGenerator", () => {
 
       const result = watchlistGenerator(cellsToGive, cellSize);
       expect(result[expectedCellToBeDead].alive).toBe(false);
+    });
+  });
+});
+
+describe("Given WatchList getLiveNeighbours", () => {
+  describe("When inputing {x: 20, y:20} with different watched cells", () => {
+    test("Then it should return 0", () => {
+      const cellsToGive = [{ x: 20, y: 20 }];
+      const cellOrigin = { x: 20, y: 20 };
+      const cellSize = 20;
+      const expectedResult = 0;
+      const inicializedWatchList = new Watchlist(cellOrigin, cellSize, true);
+
+      const result = inicializedWatchList.getLiveNeighbours(cellsToGive);
+
+      expect(result).toBe(expectedResult);
     });
   });
 });
