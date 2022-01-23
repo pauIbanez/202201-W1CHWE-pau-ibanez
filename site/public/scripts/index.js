@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import { startDemo, stopDemo } from "./demoRunner.js";
-import { setMouseAction, mouseMoving } from "./canvasMover.js";
+import { setMouseAction, mouseMoving, cellPositions } from "./canvasMover.js";
 import { drawGrid } from "./drawGrid.js";
 import { runGame } from "./gameRunner.js";
 
@@ -75,6 +75,8 @@ gridCanvas.addEventListener("mousemove", (event) => {
 });
 
 mainGameButton.addEventListener("click", () => {
-  paused = !paused;
-  gameId = runGame(cellCtx, cellCanvas, cellSize, gameSpeed);
+  if (cellPositions.length !== 0) {
+    paused = !paused;
+    gameId = runGame(cellCtx, cellCanvas, cellSize, gameSpeed);
+  }
 });
