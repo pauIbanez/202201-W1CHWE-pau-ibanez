@@ -27,6 +27,8 @@ const mainGameButton = document.getElementById("main-button");
 const resetGameButton = document.getElementById("reset-button");
 const quitGameButton = document.getElementById("quit-button");
 const speedGameSlider = document.getElementById("slider");
+const gameInfo = document.getElementById("game-info");
+const gameControlls = document.getElementById("game-controls");
 
 let paused = true;
 const cellSize = 20;
@@ -44,6 +46,8 @@ playButton.addEventListener("click", () => {
       mainUI.classList.add("start-hide");
       drawGrid(gridCanvas, gridCtx, cellSize);
       gameHTML.classList.remove("hide");
+      gameInfo.classList.add("info-start");
+      gameControlls.classList.add("game-start");
       break;
 
     case 2:

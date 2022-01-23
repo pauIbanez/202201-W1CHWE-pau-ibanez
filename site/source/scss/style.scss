@@ -37,6 +37,7 @@ li {
   background-color: #dedede;
   flex-direction: column;
   color: var(--seccondary-color);
+  z-index: 15;
 
   &__info-title {
     font-family: "Bauhaus 93", "sans-serif";
@@ -156,7 +157,7 @@ li {
 }
 
 .info-start {
-  animation: info-start 1s ease-in-out forwards;
+  animation: info-start 3s ease-in-out;
 }
 
 .game-start {
@@ -181,17 +182,15 @@ li {
   &__info {
     position: fixed;
     top: 0;
-    right: 0;
+    right: -270px;
     display: flex;
     padding: 30px;
     width: 300px;
     height: 100%;
     background-color: #dedede;
-    z-index: 2;
     flex-direction: column;
     color: var(--seccondary-color);
     transition: all ease-in-out 0.5s;
-    transform: translateX(270px);
     pointer-events: visible;
 
     .section-info {
@@ -201,7 +200,7 @@ li {
     }
 
     &:hover {
-      transform: translateX(0);
+      transform: translateX(-270px);
     }
   }
 
@@ -226,6 +225,8 @@ li {
     background-color: #dedede;
     border-radius: 50px;
     pointer-events: visible;
+    transform: translateY(100px);
+
     ul {
       width: 100%;
       height: 100%;
@@ -331,15 +332,19 @@ li {
 
 @keyframes info-start {
   0% {
-    transform: translateX(0);
+    transform: translateX(-270px);
+  }
+
+  50% {
+    transform: translateX(-270px);
   }
 
   100% {
-    transform: translateX(250px);
+    transform: translateX(0);
   }
 }
 
-@keyframes info-start {
+@keyframes game-start {
   0% {
     transform: translateY(100px);
   }
