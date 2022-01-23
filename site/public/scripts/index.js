@@ -48,6 +48,8 @@ playButton.addEventListener("click", () => {
       gameHTML.classList.remove("hide");
       gameInfo.classList.add("info-start");
       gameControlls.classList.add("game-start");
+      gridCanvas.classList.remove("unclickable");
+      gridCanvas.style.cursor = "pointer";
       break;
 
     case 2:
