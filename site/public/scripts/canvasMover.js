@@ -38,7 +38,6 @@ const setMouseAction = (
   paused,
   cellSize
 ) => {
-  console.log("Recieved mouse action");
   mouseDown = state;
   switch (action) {
     case 1:

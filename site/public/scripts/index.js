@@ -43,7 +43,6 @@ playButton.addEventListener("click", () => {
 templateButton.addEventListener("click", () => {});
 
 gridCanvas.addEventListener("mousedown", (event) => {
-  console.log("Cliek");
   setMouseAction(true, 1, event);
 });
 
@@ -56,7 +55,8 @@ gridCanvas.addEventListener("mouseup", (event) => {
     gridCanvas,
     cellCtx,
     cellCanvas,
-    paused
+    paused,
+    cellSize
   );
 });
 
@@ -65,5 +65,5 @@ gridCanvas.addEventListener("mouseleave", () => {
 });
 
 gridCanvas.addEventListener("mousemove", (event) => {
-  mouseMoving(event);
+  mouseMoving(event, gridCtx, gridCanvas, cellCtx, cellCanvas, cellSize);
 });

@@ -29,7 +29,6 @@ const runGame = (ctx, canvas, cellPositions, cellSize, speed) => {
     genCellPositions = runNextGen(newCells, genCellPositions, ctx, canvas);
   }, speed);
 
-  console.log("Returning");
   return intervalId;
 };
 
