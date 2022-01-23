@@ -165,6 +165,8 @@ html {
     z-index: 2;
     flex-direction: column;
     color: var(--seccondary-color);
+    transition: all ease-in-out 0.5s;
+    transform: translateX(280px);
 
     ul,
     li {
@@ -177,6 +179,10 @@ html {
       font-family: "Bauhaus 93", "sans-serif";
       color: var(--primary-color);
       letter-spacing: 1px;
+    }
+
+    &:hover {
+      transform: translateX(0);
     }
   }
 
