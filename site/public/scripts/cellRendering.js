@@ -6,14 +6,11 @@ const drawCell = (ctx, coordenates, cellSize) => {
   return coordenates;
 };
 
-const moveCells = (cells, translationX, translationY) => {
-  const movedCells = cells.map((cell) => ({
+const moveCells = (cells, translationX, translationY) =>
+  cells.map((cell) => ({
     x: cell.x + translationX,
     y: cell.y + translationY,
   }));
-
-  return movedCells;
-};
 
 export default drawCell;
 export { drawCell, moveCells };
