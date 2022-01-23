@@ -33,6 +33,7 @@
         </div>
       </header>
       <section class="main-ui__controlls">
+        <h2 class="section-info section-info--hidden">Main controlls</h2>
         <button id="play-button" class="main-ui__controlls__play-button">
           Play
         </button>
@@ -56,7 +57,31 @@
       </footer>
     </main>
 
-    <!-- <canvas id="grid" class="canvas canvas--grid"></canvas>
-    <canvas id="canvas" class="canvas canvas--cells"></canvas> -->
+    <section id="game-menu" class="game-menu">
+      <section id="game-info" class="game-menu__info">
+        <h2 class="section-info">Main controlls</h2>
+        <ul>
+          <li><span class="info-slot"></span></li>
+          <li><span class="info-slot"></span></li>
+          <li><span class="info-slot"></span></li>
+        </ul>
+      </section>
+      <section id="game-controls" class="game-menu__controls">
+        <ul>
+          <li><button class="game-controls__button">Reset</button></li>
+          <li>
+            <button class="game-controls__button game-controls__button--main">
+              Stop / Play
+            </button>
+          </li>
+          <li>
+            <!-- Button as placeholder -->
+            <button class="game-controls__button game-controls__button--slider">
+              Slider speed
+            </button>
+          </li>
+        </ul>
+      </section>
+    </section>
   </body>
 </html>
