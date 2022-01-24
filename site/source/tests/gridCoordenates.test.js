@@ -9,7 +9,7 @@ describe("Given getGridAlingedCoordenates", () => {
 
       const result = getGridAlignedCoords(coordsToGive, cellSize);
 
-      expect(JSON.stringify(result)).toBe(JSON.stringify(expectedResult));
+      expect(result).toStrictEqual(expectedResult);
     });
   });
 
@@ -21,7 +21,7 @@ describe("Given getGridAlingedCoordenates", () => {
 
       const result = getGridAlignedCoords(coordsToGive, cellSize);
 
-      expect(JSON.stringify(result)).toBe(JSON.stringify(expectedResult));
+      expect(result).toStrictEqual(expectedResult);
     });
   });
 });
