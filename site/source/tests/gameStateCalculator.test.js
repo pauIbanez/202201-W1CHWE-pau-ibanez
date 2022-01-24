@@ -14,4 +14,21 @@ describe("Given calculateNextGen", () => {
       expect(result).toStrictEqual(expectedReturn);
     });
   });
+
+  describe("When inputed 3 cells with origin {x:20, y:0}, {x:20, y:20} and {x:20, y:40} ", () => {
+    test("Then it should return and array with 3 spots", () => {
+      const cellToCreate = [
+        { x: 20, y: 0 },
+        { x: 20, y: 20 },
+        { x: 20, y: 40 },
+      ];
+      const cellSize = 20;
+      const prevGenCells = watchlistGenerator(cellToCreate, cellSize);
+      const expectedArraySize = 3;
+
+      const result = calculateNextGen(prevGenCells, cellToCreate);
+
+      expect(result.length).toBe(expectedArraySize);
+    });
+  });
 });
